@@ -3,34 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Карта Гомеля с возможностью удаления маркеров</title>
+    <title>Карта Гомеля</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="icon" href="location.png" type="image/png">
     <style>
-        #map {
-            height: 80vh;
-            width: 100%;
-        }
-        #address-form {
-            padding: 20px;
-            display: grid;
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
         }
 
-        input {
-            padding: 20px;
-            border-radius: 10px;
-            margin-right: 0;
+        #map {
+            height: 70vh; /* Уменьшаем высоту карты, чтобы форма ввода была удобной */
+            width: 100%;
+        }
+
+        #address-form {
+            padding: 10px;
+            display: grid;
+            gap: 10px; /* Пробелы между элементами */
+        }
+
+        input, button {
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            width: 100%;
+            box-sizing: border-box; /* Обеспечиваем, чтобы элементы не выходили за рамки */
         }
 
         button {
-            padding: 20px;
-            border-radius: 10px;
             background-color: #0059ffa6;
             border: none;
+            color: white;
         }
 
         button:hover {
             background-color: #facccc;
             cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            /* Мобильные стили */
+            #map {
+                height: 60vh; /* Адаптируем высоту карты на мобильных */
+            }
+
+            input, button {
+                font-size: 1em; /* Уменьшаем шрифт на мобильных */
+            }
         }
     </style>
 </head>
