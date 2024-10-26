@@ -1,0 +1,89 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    width: 1170px;
+   box-sizing: border-box;
+}
+
+
+
+.flex {
+    
+    display: flex;
+    gap: 3px;
+    flex-wrap: nowrap; /* Устанавливаем nowrap, чтобы кнопки не переходили на следующую строку */
+    justify-content: center; /* Устанавливаем выравнивание по левому краю */
+    overflow-x: auto; /* Добавляем горизонтальную прокрутку, если кнопок слишком много */
+    padding: 20px;
+}
+
+.btn-image {
+    transition: transform 1s, box-shadow 0.2s;
+    padding: 10px;
+    border-radius: 5px;
+    width: 50px; /* Увеличиваем ширину кнопок для более удобного отображения */
+    height: 50px; /* Можно также задать высоту для сохранения пропорций */
+    box-sizing: border-box;
+    background-color: #0059ffa6;
+    border: none;
+    color: white;
+}
+
+.btn-image.selected {
+    transform: translateY(-10px); /* Поднимает элемент */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.945); /* Добавляет тень */
+    border: 2px solid #000000; /* Изменяет цвет границы при выборе */
+    border-radius: 5px; /* Скругляет углы */
+}
+
+#map {
+    height: 50%; /* Уменьшаем высоту карты, чтобы форма ввода была удобной */
+    width: 50%;
+    border: 5px solid black;
+    box-shadow: 5px 10px 15px 0 rgba(128,0,128, 1);
+    left: 25%;
+}
+
+#address-form {
+    padding: 10px;
+    display: flex;
+    gap: 10px;/* Пробелы между элементами */
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap; 
+}
+
+input, .btn {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    width: 50%;
+    box-sizing: border-box; /* Обеспечиваем, чтобы элементы не выходили за рамки */
+}
+
+.btn {
+    background-color: #0059ffa6;
+    border: none;
+    color: white;
+}
+
+button:hover {
+    background-color: #07eee2;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    /* Мобильные стили */
+    #map {
+        height: 60vh; /* Адаптируем высоту карты на мобильных */
+    }
+
+    input, button {
+        font-size: 1em; /* Уменьшаем шрифт на мобильных */
+    }
+}
