@@ -81,6 +81,7 @@ button:hover {
     .flex {
         gap: 5px;
         padding: 10px 5px;
+        flex-wrap: wrap;
     }
 
     .btn-image {
@@ -89,7 +90,8 @@ button:hover {
     }
 
     #map {
-        height: 200px;
+        width: 100%;
+        left: 0%;
     }
 
     input,
