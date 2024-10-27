@@ -130,7 +130,7 @@ function chooseIcon(type) {
 // Создание содержимого всплывающего окна с кнопкой удаления
 function createPopupContent(markerData, index) {
     let linkHtml = markerData.link ? `<br><a href="${markerData.link}" target="_blank">Посмотреть на Google Maps</a>` : '';
-    return `<b>${markerData.address}</b><br>${markerData.message}${linkHtml}<br><br><button class='btn flex' onclick="deleteMarker(${index})">Удалить маркер</button>`;
+    return `<b>${markerData.address}</b><br>${markerData.message}${linkHtml}<br><br><button class='image-btn' onclick="deleteMarker(${index})">Удалить маркер</button>`;
 }
 
 
