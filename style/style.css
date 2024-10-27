@@ -116,3 +116,19 @@ button:hover {
         max-width: 100%;
     }
 }
+
+@media (max-width: 768px) and (orientation: landscape){
+    #map {
+        width: 100%;
+        left: 0%;
+        height: 90%;
+    }
+    .flex {
+        gap: 15px;
+        padding: 20px;
+        flex-wrap: wrap;
+        max-width: 559px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
