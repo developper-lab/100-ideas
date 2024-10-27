@@ -33,7 +33,8 @@ body{
     color: white;
     border: none;   
     box-sizing: border-box;
-    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .btn-image {
