@@ -111,6 +111,7 @@ body{
 }
 
 #open-form-button {
+    position: relative;
     margin-left: 10px; /* Space between dropdown and button */
     padding: 16px; /* Adjusted padding for a larger button */
     border-radius: 50%;
