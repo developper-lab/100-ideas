@@ -99,7 +99,27 @@ body{
     cursor: pointer;
 }
 
+
+.btn-image-sort {
+    transition: transform 0.3s, box-shadow 0.2s;
+    padding: 8px; /* Добавлено небольшое внутреннее отступление */
+    border-radius: 10px;
+    width: 60px;
+    height: 60px;
+    background-color: #0059ffa6;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
 .btn-image img {
+    width: auto;
+    height: 100%; /* Высота изображения займет 100% высоты кнопки */
+    object-fit: contain;
+}
+
+.btn-image-sort img {
     width: auto;
     height: 100%; /* Высота изображения займет 100% высоты кнопки */
     object-fit: contain;
@@ -111,19 +131,18 @@ body{
 }
 
 #open-form-button {
-    position: absolute;
-    margin-left: 10px; /* Space between dropdown and button */
-   padding: 16px;
-    border-radius: 40%;
-    margin-top: 10px;
-
-    right: 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    font-size: 28px; /* Increased font size for better visibility */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    position: absolute; /* Позиционирование относительно ближайшего позиционированного родителя */
+    bottom: 20px; /* Расстояние от низа */
+    right: 20px; /* Расстояние от правого края */
+    padding: 16px; /* Отступы для увеличения кнопки */
+    border-radius: 50%; /* Округлая форма */
+    background-color: #007bff; /* Цвет фона */
+    color: white; /* Цвет текста */
+    border: none; /* Убираем границу */
+    font-size: 28px; /* Размер шрифта */
+    cursor: pointer; /* Указатель при наведении */
+    transition: background-color 0.3s ease; /* Плавный переход цвета фона */
+    z-index: 1000; /* Чтобы кнопка была поверх других элементов */
 }
 
 #open-form-button:hover {
@@ -283,7 +302,7 @@ button:hover {
 
     .sort{
         flex-direction: row; /* Две колонки */
-        gap: 10px; /* Увеличиваем пробелы между элементами */
+        /* Увеличиваем пробелы между элементами */
     }
 
     .btn-image {
@@ -292,8 +311,8 @@ button:hover {
     }
 
     .btn-image-sort{
-        width: 50px;
-        height: 50px;
+        width: 24px;
+        height: 34px;
         display: flex; /* Убедитесь, что это значение установлено */
         flex-direction: column; /* Измените направление на столбец */
     }
@@ -332,8 +351,6 @@ button:hover {
     justify-content: center;
     flex-direction: row; /* Изменяем на row для горизонтального размещения */
     padding: 20px 5px;
-    flex-wrap: wrap; /* Чтобы кнопки могли переноситься на следующую строку при необходимости */
-    gap: 10px;
 }
 
 select{
