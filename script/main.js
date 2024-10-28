@@ -299,17 +299,16 @@ function filterMarkers(type) {
     }
     markerObjects = {}; // Очищаем объект для отслеживания маркеров на карте
 
-    // Добавляем на карту маркеры в зависимости от выбранного типа
+    // Отображаем маркеры по типу
     markers.forEach((markerData, index) => {
         if (type === "all" || markerData.type === type) {
             const iconType = chooseIcon(markerData.type);
             const marker = L.marker([markerData.lat, markerData.lon], { icon: iconType }).addTo(map);
             marker.bindPopup(createPopupContent(markerData, index));
-            markerObjects[index] = marker;
+            markerObjects[index] = marker; // Сохраняем объект маркера
         }
     });
-    
-}   
+}
 function addPresetMarkers() {
     var places = [
         //GYM

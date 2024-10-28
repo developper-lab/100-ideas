@@ -58,22 +58,20 @@
     </div>
 
     <div class="sort">
-        <select name="Section" id="sort" onchange="filterMarkers(this.value)">
-            <option value="all" selected>Все</option>
-            <option value="gym">Спорт залы</option>
-            <option value="karaoke">Караоке</option>
-            <option value="club">Клубы</option>
-            <option value="theater">Театры</option>
-            <option value="rest">Рестораны</option>
-            <option value="cinema">Кинотеатры/Фильмы</option>
-            <option value="music">Выступления/Музыка</option>
-            <option value="football">Футбол</option>
-            <option value="basketball">Баскетбол</option>
-            <option value="voleyball">Волейбол</option>
-        </select>
+        <button class="btn-image" data-type="all" title="Все" onclick="filterMarkers('all')"><img src="image/all.png" alt="Все"></button>
+        <button class="btn-image" data-type="basketball" title="Баскетбол" onclick="filterMarkers('basketball')"><img src="image/basketball.png" alt="Баскетбол"></button>
+        <button class="btn-image" data-type="football" title="Футбол" onclick="filterMarkers('football')"><img src="image/football.png" alt="Футбол"></button>
+        <button class="btn-image" data-type="voleyball" title="Волейбол" onclick="filterMarkers('voleyball')"><img src="image/voleyball.png" alt="Волейбол"></button>
+        <button class="btn-image" data-type="cinema" title="Фильм" onclick="filterMarkers('cinema')"><img src="image/cinema.png" alt="Фильм"></button>
+        <button class="btn-image" data-type="club" title="Клуб" onclick="filterMarkers('club')"><img src="image/night-club.png" alt="Клуб"></button>
+        <button class="btn-image" data-type="karaoke" title="Караоке" onclick="filterMarkers('karaoke')"><img src="image/singer.png" alt="Караоке"></button>
+        <button class="btn-image" data-type="gym" title="Зал" onclick="filterMarkers('gym')"><img src="image/gym.png" alt="Зал"></button>
+        <button class="btn-image" data-type="theater" title="Театр" onclick="filterMarkers('theater')"><img src="image/theater.png" alt="Театр"></button>
+        <button class="btn-image" data-type="rest" title="Ресторан" onclick="filterMarkers('rest')"><img src="image/restaurant.png" alt="Ресторан"></button>
+        <button class="btn-image" data-type="music" title="Музыка" onclick="filterMarkers('music')"><img src="image/music.png" alt="Музыка"></button>
         <button id="open-form-button" onclick="toggleForm()">+</button>
-        
     </div>
+   
     
     <div id="map"></div>
 
