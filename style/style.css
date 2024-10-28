@@ -132,10 +132,10 @@ body{
 
 #open-form-button {
     position: absolute; /* Позиционирование относительно ближайшего позиционированного родителя */
-    bottom: 20px; /* Расстояние от низа */
-    right: 20px; /* Расстояние от правого края */
+    bottom: 0px; /* Расстояние от низа */
+    right: 0px; /* Расстояние от правого края */
     padding: 16px; /* Отступы для увеличения кнопки */
-    border-radius: 50%; /* Округлая форма */
+    border-radius: 30%; /* Округлая форма */
     background-color: #007bff; /* Цвет фона */
     color: white; /* Цвет текста */
     border: none; /* Убираем границу */
@@ -263,7 +263,7 @@ body{
     padding: 8px; /* Добавлено небольшое внутреннее отступление */
     border-radius: 10px;
     width: 50px;
-    margin: 5px;
+    margin: 2px;
     height: 50px;
     background-color: #0059ffa6;
     border: none;
@@ -311,8 +311,10 @@ button:hover {
     }
 
     .btn-image-sort{
-        width: 24px;
-        height: 34px;
+        width: 30px;
+        height: 40px;
+        align-items: center;
+        justify-content: start;
         display: flex; /* Убедитесь, что это значение установлено */
         flex-direction: column; /* Измените направление на столбец */
     }
