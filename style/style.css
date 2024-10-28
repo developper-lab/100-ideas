@@ -268,7 +268,7 @@ button:hover {
     }
 
     #map {
-        width: 100%;
+        max-width: 100%;
         left: 0%;
     }
 
@@ -281,9 +281,9 @@ button:hover {
 
 @media (max-width: 768px) and (orientation: landscape){
     #map {
-        width: 100%;
+        max-width: 100%;
         left: 0%;
-        height: 90%;
+
     }
     .flex {
         gap: 15px;
