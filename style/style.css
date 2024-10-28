@@ -219,8 +219,8 @@ body{
 }
 
 #map {
-    height: 80%; /* Уменьшаем высоту карты, чтобы форма ввода была удобной */
-    width: 80%;
+    height: 60%; /* Уменьшаем высоту карты, чтобы форма ввода была удобной */
+    width: 100%;
     border: 5px solid black;
     box-shadow: 5px 10px 15px 0 rgba(128,0,128, 1);
     margin-left: auto;
