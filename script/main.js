@@ -2,9 +2,12 @@ function toggleForm() {
     const overlay = document.getElementById("overlay");
     const formContainer = document.getElementById("address-form-container");
     const isFormVisible = overlay.style.display === "block";
+    const openformbutton = document.getElementById("open-form-button")
+    openformbutton.style.display = "none"
 
     overlay.style.display = isFormVisible ? "none" : "block";
     formContainer.style.display = isFormVisible ? "none" : "block";
+    openformbutton.style.display = isFormVisible ? "block" : "none"
 }
 
 // Закрытие формы при клике на затемненный фон
