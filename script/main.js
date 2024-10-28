@@ -128,14 +128,30 @@ function chooseIcon(type) {
 }
 
 // Создание содержимого всплывающего окна с кнопкой удаления
+// Создание содержимого всплывающего окна с кнопкой удаления
 function createPopupContent(markerData, index) {
-    let linkHtml = markerData.link ? `<br><a href="${markerData.link}" target="_blank">Посмотреть на Google Maps</a>` : '';
-    return `<b>${markerData.address}</b><br>${markerData.message}${linkHtml}<br><br><button class='image-btn' onclick="deleteMarker(${index})">Удалить маркер</button>`;
+    let infoHtml = markerData.info ? `<br>${markerData.info}` : ''; // Добавьте это
+
+    // Убираем кнопку удаления, если маркер добавлен вручную
+    let deleteButtonHtml = markerData.isPreset ? '' : `<br><button class='image-btn' onclick="deleteMarker(${index})">Удалить маркер</button>`;
+    
+    // Проверяем, определено ли имя маркера
+    let nameHtml = markerData.name ? `<b>${markerData.name}</b> <br>` : ''; // Здесь 'Без названия' — текст по умолчанию
+
+    return `${nameHtml}${markerData.address}${infoHtml}${deleteButtonHtml}`;
 }
+
+
 
 
 // Функция для удаления маркера
 function deleteMarker(index) {
+    // Проверка, является ли маркер предустановленным
+    if (markers[index].isPreset) {
+        alert('Предустановленные маркеры нельзя удалить.');
+        return;
+    }
+
     // Удаляем маркер с карты
     map.removeLayer(markerObjects[index]);
     delete markerObjects[index];
@@ -164,6 +180,7 @@ function updateMarkers() {
         markerObjects[index] = marker;
     });
 }
+
 
 // Функция для геокодирования адреса с помощью Nominatim
 function getCoordinates(address) {
@@ -213,12 +230,12 @@ function findAddress() {
     getCoordinates(address).then(coords => {
         if (coords && isWithinGomel(coords.lat, coords.lon)) {
             const markerData = {
-                lat: coords.lat,
-                lon: coords.lon,
-                address: address,
-                message: message,
-                type: selectedType // Используем выбранный тип места
-            };
+    lat: coords.lat,
+    lon: coords.lon,
+    address: address,
+    info: message, // Используем поле 'info' для сообщения
+    type: selectedType // Используем выбранный тип места
+};
 
             const iconType = chooseIcon(selectedType);
 
@@ -257,56 +274,6 @@ imageButtons.forEach((button) => {
 
 
 // Добавляем предустановленные маркеры
-// function addPresetMarkers() {
-//     var places = [
-//         //GYM
-//         { lat: 52.4052, lon: 30.9215, name: 'Адреналин', address: 'улица Гагарина 65,', type: 'gym' },
-//         { lat: 52.4248, lon: 31.0105, name: 'Фитнес-клуб Кенгуру', address: 'пр-т. Ленина 3', type: 'gym' },
-//         { lat: 52.4093, lon: 30.9484, name: 'Тренажерный зал "Maximus"', address: 'Волгоградская ул. 5,', type: 'gym' },
-//         { lat: 52.4024, lon: 30.9202, name: 'Фитнес-клуб "Joker Gym" тренажерный зал', address: 'ул. 70 лет БССР дом 2а', type: 'gym', info:`'Телефон: +375298213193 <br> Режим работы: пон-пят 8:30.00-21.00 <br> суб 9:30.00-17.00 вс ВЫХОДНОЙ' `},
-//         { lat: 52.4228, lon: 31.0012, name: 'Атлет фитнес-центр', address: 'улица Гагарина 57', type: 'gym'},
-//         { lat: 52.4259, lon: 31.0133, name: 'Фитнес-клуб DMFITNESS', address: 'ул. Трудовая 3а', type: 'gym' },
-//         { lat: 52.4252, lon: 31.0083, name: 'ФИТНЕС INGRAVITY', address: 'пр-т. Ленина 10', type: 'gym' },
-
-//         //CLUB
-//         { lat: 52.4123, lon: 30.9542, name: 'стейк бар ATLANTA', address: 'Речицкий просп. 24', type: 'club' },
-//         { lat: 52.4041, lon: 30.9605, name: 'Чисто Пивной Ресторанчик', address: 'улица Братьев Лизюковых 4А', type: 'club',},
-//         { lat: 52.4245, lon: 31.0044, name: 'Black Bar', address: 'улица Катунина 14', type: 'club' },
-//         { lat: 52.4502, lon: 31.0227, name: 'Спорт Бар в Гомеле', address: 'улица Мазурова 30', type: 'club' },
-//         { lat: 52.4505, lon: 31.0229, name: 'Victory', address: 'улица Мазурова 30', type: 'club' },
-//         { lat: 52.4272, lon: 31.0200, name: 'Бар Квартирник', address: 'Билецкий спуск 1', type: 'club' },
-//         { lat: 52.4265, lon: 31.0094, name: 'Бар Первый', address: 'ул. Кирова д. 1', type: 'club' },
-
-//         //REST
-//         { lat: 52.4097, lon: 30.9505, name: 'Ресторан Вилла Грилла', address: 'Волгоградская ул. 45', type: 'rest' },
-//         { lat: 52.4273, lon: 31.0036, name: 'Сябры', address: 'пр-т. Ленина 33', type: 'rest' },
-//         { lat: 52.4284, lon: 31.0135, name: 'Старое время', address: 'Krest`yanskaya 14', type: 'rest' },
-//         { lat: 52.4242, lon: 31.0075, name: 'Бацькі', address: 'Internatsional`naya 3', type: 'rest' },
-//         { lat: 52.4090, lon: 30.9325, name: 'Ресторан Речицкий', address: 'Междугородняя ул. 2', type: 'rest' },
-
-//         //KARAOKE
-//         { lat: 52.4278, lon: 31.0084, name: 'Караоке клуб хХх', address: 'ул. Кирова 9', type: 'karaoke' },
-//         { lat: 52.4295, lon: 31.0115, name: 'San Remo', address: 'ул. Советская 26а', type: 'karaoke' },
-//         { lat: 52.3868, lon: 31.0225, name: 'JAGGER karaoke project', address: 'вуліца Дастаеўскага 1-1', type: 'karaoke' },
-//         { lat: 52.4230, lon: 31.0140, name: 'Nota', address: 'пл. Ленина 2', type: 'karaoke' },
-//         { lat: 52.4274, lon: 31.0145, name: 'Новое Время', address: 'ул. Ланге 17', type: 'karaoke' }
-
-
-
-//     ];
-
-//     places.forEach(function (place) {
-//         var iconType = chooseIcon(place.type);
-//         var linkHtml = place.info ? `<br>${place.info}"<br>` : '';
-        
-//         var marker = L.marker([place.lat, place.lon], { icon: iconType }).addTo(map)
-//             .bindPopup(
-//                 `<b>${place.name}</b><br>${place.address}${linkHtml}`
-//             );
-//     });
-    
-// }
-// Функция для фильтрации маркеров по выбранному типу
 function filterMarkers(type) {
     console.log(`Selected type: ${type}`);
 
@@ -365,20 +332,83 @@ function addPresetMarkers() {
 
     ];
 
-    // Добавляем места в массив markers для фильтрации
     places.forEach(function (place) {
-        markers.push({
+        const markerData = {
             lat: place.lat,
             lon: place.lon,
             address: place.address,
             name: place.name,
-            type: place.type
-        });
+            type: place.type,
+            info: place.info || '', // Обязательно передайте info, если она есть
+            isPreset: true // Указываем, что это предустановленный маркер
+        };
+        
+        const iconType = chooseIcon(place.type);
+        
+        // Добавляем новый предустановленный маркер на карту
+        const marker = L.marker([place.lat, place.lon], { icon: iconType }).addTo(map);
+        marker.bindPopup(createPopupContent(markerData, markers.length));
+        markerObjects[markers.length] = marker; // Сохраняем объект маркера
+        
+        markers.push(markerData); // Сохраняем данные о маркере
     });
 
     // Отображаем все маркеры при начальной загрузке
     filterMarkers('all');
 }
+
+// function addPresetMarkers() {
+//     var places = [
+//         //GYM
+//         { lat: 52.4052, lon: 30.9215, name: 'Адреналин', address: 'улица Гагарина 65,', type: 'gym' },
+//         { lat: 52.4248, lon: 31.0105, name: 'Фитнес-клуб Кенгуру', address: 'пр-т. Ленина 3', type: 'gym' },
+//         { lat: 52.4093, lon: 30.9484, name: 'Тренажерный зал "Maximus"', address: 'Волгоградская ул. 5,', type: 'gym' },
+//         { lat: 52.4024, lon: 30.9202, name: 'Фитнес-клуб "Joker Gym" тренажерный зал', address: 'ул. 70 лет БССР дом 2а', type: 'gym', info:`'Телефон: +375298213193 <br> Режим работы: пон-пят 8:30.00-21.00 <br> суб 9:30.00-17.00 вс ВЫХОДНОЙ' `},
+//         { lat: 52.4228, lon: 31.0012, name: 'Атлет фитнес-центр', address: 'улица Гагарина 57', type: 'gym'},
+//         { lat: 52.4259, lon: 31.0133, name: 'Фитнес-клуб DMFITNESS', address: 'ул. Трудовая 3а', type: 'gym' },
+//         { lat: 52.4252, lon: 31.0083, name: 'ФИТНЕС INGRAVITY', address: 'пр-т. Ленина 10', type: 'gym' },
+
+//         //CLUB
+//         { lat: 52.4123, lon: 30.9542, name: 'стейк бар ATLANTA', address: 'Речицкий просп. 24', type: 'club' },
+//         { lat: 52.4041, lon: 30.9605, name: 'Чисто Пивной Ресторанчик', address: 'улица Братьев Лизюковых 4А', type: 'club',},
+//         { lat: 52.4245, lon: 31.0044, name: 'Black Bar', address: 'улица Катунина 14', type: 'club' },
+//         { lat: 52.4502, lon: 31.0227, name: 'Спорт Бар в Гомеле', address: 'улица Мазурова 30', type: 'club' },
+//         { lat: 52.4505, lon: 31.0229, name: 'Victory', address: 'улица Мазурова 30', type: 'club' },
+//         { lat: 52.4272, lon: 31.0200, name: 'Бар Квартирник', address: 'Билецкий спуск 1', type: 'club' },
+//         { lat: 52.4265, lon: 31.0094, name: 'Бар Первый', address: 'ул. Кирова д. 1', type: 'club' },
+
+//         //REST
+//         { lat: 52.4097, lon: 30.9505, name: 'Ресторан Вилла Грилла', address: 'Волгоградская ул. 45', type: 'rest' },
+//         { lat: 52.4273, lon: 31.0036, name: 'Сябры', address: 'пр-т. Ленина 33', type: 'rest' },
+//         { lat: 52.4284, lon: 31.0135, name: 'Старое время', address: 'Krest`yanskaya 14', type: 'rest' },
+//         { lat: 52.4242, lon: 31.0075, name: 'Бацькі', address: 'Internatsional`naya 3', type: 'rest' },
+//         { lat: 52.4090, lon: 30.9325, name: 'Ресторан Речицкий', address: 'Междугородняя ул. 2', type: 'rest' },
+
+//         //KARAOKE
+//         { lat: 52.4278, lon: 31.0084, name: 'Караоке клуб хХх', address: 'ул. Кирова 9', type: 'karaoke' },
+//         { lat: 52.4295, lon: 31.0115, name: 'San Remo', address: 'ул. Советская 26а', type: 'karaoke' },
+//         { lat: 52.3868, lon: 31.0225, name: 'JAGGER karaoke project', address: 'вуліца Дастаеўскага 1-1', type: 'karaoke' },
+//         { lat: 52.4230, lon: 31.0140, name: 'Nota', address: 'пл. Ленина 2', type: 'karaoke' },
+//         { lat: 52.4274, lon: 31.0145, name: 'Новое Время', address: 'ул. Ланге 17', type: 'karaoke' }
+
+
+
+//     ];
+
+//     // Добавляем места в массив markers для фильтрации
+//     places.forEach(function (place) {
+//         markers.push({
+//             lat: place.lat,
+//             lon: place.lon,
+//             address: place.address,
+//             name: place.name,
+//             type: place.type
+//         });
+//     });
+
+//     // Отображаем все маркеры при начальной загрузке
+//     filterMarkers('all');
+// }
 
 
 
