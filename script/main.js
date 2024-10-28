@@ -1,3 +1,14 @@
+function toggleForm() {
+    const overlay = document.getElementById("overlay");
+    const formContainer = document.getElementById("address-form-container");
+    const isFormVisible = overlay.style.display === "block";
+
+    overlay.style.display = isFormVisible ? "none" : "block";
+    formContainer.style.display = isFormVisible ? "none" : "block";
+}
+
+// Закрытие формы при клике на затемненный фон
+document.getElementById("overlay").addEventListener("click", toggleForm);
 var map = L.map('map').setView([52.4345, 30.9754], 13);
 
 // Добавление тайлов OpenStreetMap
@@ -230,12 +241,12 @@ function findAddress() {
     getCoordinates(address).then(coords => {
         if (coords && isWithinGomel(coords.lat, coords.lon)) {
             const markerData = {
-    lat: coords.lat,
-    lon: coords.lon,
-    address: address,
-    info: message, // Используем поле 'info' для сообщения
-    type: selectedType // Используем выбранный тип места
-};
+                lat: coords.lat,
+                lon: coords.lon,
+                address: address,
+                info: message,
+                type: selectedType
+            };
 
             const iconType = chooseIcon(selectedType);
 
@@ -250,6 +261,9 @@ function findAddress() {
 
             // Перемещаем карту к маркеру
             map.setView([coords.lat, coords.lon], 15);
+
+            // Закрываем форму
+            toggleForm();
         } else {
             alert('Адрес не находится в пределах Гомеля.');
         }

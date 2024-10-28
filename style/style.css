@@ -11,15 +11,178 @@ body{
 }
 
 
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+}
 
+/* Обновленные стили для формы */
+#address-form-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    width: 90%;
+    max-width: 400px;
+}
+
+#address-form-container label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+#address-form-container input,
+#address-form-container .btn {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+#address-form-container input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+#address-form-container .btn {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#address-form-container .btn:hover {
+    background-color: #0059d4;
+}
+
+/* Кнопки с изображениями внутри формы */
 .flex {
-    
     display: flex;
     gap: 10px;
-    flex-wrap: nowrap; /* Устанавливаем nowrap, чтобы кнопки не переходили на следующую строку */
-    justify-content: center; /* Устанавливаем выравнивание по левому краю */
-    overflow-x: auto; /* Добавляем горизонтальную прокрутку, если кнопок слишком много */
-    padding: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    margin-top: 20px;
+}
+
+.btn-image {
+    transition: transform 0.3s, box-shadow 0.2s;
+    padding: 8px; /* Добавлено небольшое внутреннее отступление */
+    border-radius: 10px;
+    width: 60px;
+    height: 60px;
+    background-color: #0059ffa6;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.btn-image img {
+    width: auto;
+    height: 100%; /* Высота изображения займет 100% высоты кнопки */
+    object-fit: contain;
+}
+
+.btn-image:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+#open-form-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+#open-form-button:hover {
+    background-color: #0059d4;
+}
+
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 768px) {
+    /* Уменьшаем ширину формы */
+    #address-form-container {
+        width: 95%;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    /* Уменьшаем размеры шрифтов и полей */
+    #address-form-container input,
+    #address-form-container .btn {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+    /* Увеличиваем кнопку открытия формы */
+    #open-form-button {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    /* Уменьшаем иконки кнопок */
+    .btn-image {
+        width: 45px;
+        height: 45px;
+    }
+
+    .flex {
+        gap: 8px;
+        padding-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Дополнительные настройки для очень маленьких экранов */
+    #address-form-container {
+        padding: 15px;
+    }
+
+    #address-form-container input,
+    #address-form-container .btn {
+        font-size: 0.8em;
+    }
+
+    #open-form-button {
+        font-size: 18px;
+        padding: 8px;
+    }
+
+    .btn-image {
+        width: 40px;
+        height: 40px;
+    }
 }
 
 .image-btn{
@@ -58,11 +221,12 @@ body{
 }
 
 #map {
-    height: 50%; /* Уменьшаем высоту карты, чтобы форма ввода была удобной */
-    width: 50%;
+    height: 80%; /* Уменьшаем высоту карты, чтобы форма ввода была удобной */
+    width: 80%;
     border: 5px solid black;
     box-shadow: 5px 10px 15px 0 rgba(128,0,128, 1);
-    left: 25%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #address-form {

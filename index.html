@@ -26,31 +26,37 @@
 
     <!-- Форма для ввода адреса и сообщения -->
 
-        <div id="address-form">
-            
+    <div id="overlay"></div>
+
+    <!-- Кнопка открытия формы -->
+    <button id="open-form-button" onclick="toggleForm()">+</button>
+
+    <!-- Форма для ввода адреса и сообщения -->
+    <div id="address-form-container">
         <div class="g_id_signin" data-type="standard"></div>
-            <label for="address">Введите адрес в Гомеле:</label>
-            <input type="text" id="address" placeholder="Например, ул. Советская, 5" required>
-            <br><br>
-            <label for="message">Введите сообщение:</label>
-            <input type="text" id="message" placeholder="Сегодня выступаю тут" required>
-            <br><br>
-            <button id="findAddressButton" onclick="findAddress()" class="btn">Найти адрес</button>
+        <label for="address">Введите адрес в Гомеле:</label>
+        <input type="text" id="address" placeholder="Например, ул. Советская, 5" required>
+        <br><br>
+        <label for="message">Введите сообщение:</label>
+        <input type="text" id="message" placeholder="Сегодня выступаю тут" required>
+        <br><br>
+        <button id="findAddressButton" onclick="findAddress()" class="btn">Найти адрес</button>
 
+        <!-- Кнопки с изображениями -->
+        <div class="flex">
+            <button class="btn-image" data-type="basketball" title="Баскетбол"><img src="image/basketball.png" alt=""></button>
+            <button class="btn-image" data-type="football" title="Футбол"><img src="image/football.png" alt=""></button>
+            <button class="btn-image" data-type="voleyball" title="Волейбол"><img src="image/voleyball.png" alt=""></button>
+            <button class="btn-image" data-type="cinema" title="Фильм"><img src="image/cinema.png" alt=""></button>
+            <button class="btn-image" data-type="club" title="Клуб"><img src="image/night-club.png" alt=""></button>
+            <button class="btn-image" data-type="karaoke" title="Караоке"><img src="image/singer.png" alt=""></button>
+            <button class="btn-image" data-type="gym" title="Зал"><img src="image/gym.png" alt=""></button>
+            <button class="btn-image" data-type="theater" title="Театр"><img src="image/theater.png" alt=""></button>
+            <button class="btn-image" data-type="rest" title="Ресторан"><img src="image/restaurant.png" alt=""></button>
+            <button class="btn-image" data-type="music" title="Музыка"><img src="image/music.png" alt=""></button>
         </div>
-
-    <div class="flex ">
-        <button class="btn-image" data-type="basketball" title="Баскетбол"><img src="image/basketball.png" alt=""></button>
-        <button class="btn-image" data-type="football" title="Футбол"><img src="image/football.png" alt=""></button>
-        <button class="btn-image" data-type="voleyball" title="Волейбол"><img src="image/voleyball.png" alt=""></button>
-        <button class="btn-image" data-type="cinema" title="Фильм"><img src="image/cinema.png" alt=""></button>
-        <button class="btn-image" data-type="club" title="Клуб"><img src="image/night-club.png" alt=""></button>
-        <button class="btn-image" data-type="karaoke" title="Караоке"><img src="image/singer.png" alt=""></button>
-        <button class="btn-image" data-type="gym" title="Зал"><img src="image/gym.png" alt=""></button>
-        <button class="btn-image" data-type="theater" title="Театр"><img src="image/theater.png" alt=""></button>
-        <button class="btn-image" data-type="rest" title="Ресторан"><img src="image/restaurant.png" alt=""></button>
-        <button class="btn-image" data-type="music" title="Музыка"><img src="image/music.png" alt=""></button>
     </div>
+
     <div class="sort">
         <select name="Section" id="sort" onchange="filterMarkers(this.value)">
             <option value="all" selected>Все</option>
