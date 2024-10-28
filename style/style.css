@@ -112,8 +112,8 @@ body{
 
 #open-form-button {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+
+    right: 20%;
     padding: 16px; /* Increased padding for a larger button */
     border-radius: 50%;
     background-color: #007bff;
