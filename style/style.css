@@ -236,6 +236,23 @@ body{
     flex-wrap: wrap; 
 }
 
+.btn-image-sort{
+    gap: 5px;
+    transition: transform 0.3s, box-shadow 0.2s;
+    padding: 8px; /* Добавлено небольшое внутреннее отступление */
+    border-radius: 10px;
+    width: 50px;
+    margin: 5px;
+    height: 50px;
+    background-color: #0059ffa6;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
 input, .btn {
     padding: 10px;
     border-radius: 5px;
@@ -262,9 +279,21 @@ button:hover {
         flex-wrap: wrap;
     }
 
+    .sort{
+        flex-direction: row; /* Две колонки */
+        gap: 10px; /* Увеличиваем пробелы между элементами */
+    }
+
     .btn-image {
         width: 100px;
         height: 50px;
+    }
+
+    .btn-image-sort{
+        width: 50px;
+        height: 50px;
+        display: flex; /* Убедитесь, что это значение установлено */
+        flex-direction: column; /* Измените направление на столбец */
     }
 
     #map {
@@ -295,11 +324,14 @@ button:hover {
     }
 }
 
-.sort{
+.sort {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: row; /* Изменяем на row для горизонтального размещения */
     padding: 20px 5px;
+    flex-wrap: wrap; /* Чтобы кнопки могли переноситься на следующую строку при необходимости */
+    gap: 10px;
 }
 
 select{
