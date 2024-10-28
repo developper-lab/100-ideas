@@ -141,10 +141,11 @@ h1{
 }
 
 #open-form-button {
+    display: flex;
     position: absolute; /* Позиционирование относительно ближайшего позиционированного родителя */
     bottom: 20px; /* Расстояние от низа */
     right: 5px; /* Расстояние от правого края */
-    padding: 5px 15px; /* Отступы для увеличения кнопки */
+    padding: 3px 15px; /* Отступы для увеличения кнопки */
     text-align: center;
     align-items: center;
     border-radius: 50%; /* Округлая форма */
