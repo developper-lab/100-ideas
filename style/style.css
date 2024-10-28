@@ -145,7 +145,7 @@ h1{
     position: absolute; /* Позиционирование относительно ближайшего позиционированного родителя */
     bottom: 20px; /* Расстояние от низа */
     right: 5px; /* Расстояние от правого края */
-    padding: 3px 15px; /* Отступы для увеличения кнопки */
+    padding: 5px 15px; /* Отступы для увеличения кнопки */
     text-align: center;
     align-items: center;
     border-radius: 50%; /* Округлая форма */
@@ -180,7 +180,7 @@ h1{
 
     /* Увеличиваем кнопку открытия формы */
     #open-form-button {
-        font-size: 35px;
+        font-size: 30px;
 
     }
 
@@ -208,7 +208,7 @@ h1{
     }
 
     #open-form-button {
-        font-size: 35px;
+        font-size: 30px;
     }
 
     .btn-image {

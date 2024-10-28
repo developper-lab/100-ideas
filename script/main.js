@@ -7,7 +7,7 @@ function toggleForm() {
 
     overlay.style.display = isFormVisible ? "none" : "block";
     formContainer.style.display = isFormVisible ? "none" : "block";
-    openformbutton.style.display = isFormVisible ? "block" : "none"
+    openformbutton.style.display = isFormVisible ? "block" : "none";
 }
 
 // Закрытие формы при клике на затемненный фон
