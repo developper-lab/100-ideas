@@ -11,6 +11,16 @@ body{
 }
 
 
+h1{
+    margin: 0;
+    padding: 0;
+}
+
+
+.title{
+    margin-left: 10px;
+}
+
 #overlay {
     display: none;
     position: fixed;
@@ -132,10 +142,10 @@ body{
 
 #open-form-button {
     position: absolute; /* Позиционирование относительно ближайшего позиционированного родителя */
-    bottom: 0px; /* Расстояние от низа */
-    right: 0px; /* Расстояние от правого края */
-    padding: 16px; /* Отступы для увеличения кнопки */
-    border-radius: 30%; /* Округлая форма */
+    bottom: 20px; /* Расстояние от низа */
+    right: 5px; /* Расстояние от правого края */
+    padding: 5px 15px; /* Отступы для увеличения кнопки */
+    border-radius: 50%; /* Округлая форма */
     background-color: #007bff; /* Цвет фона */
     color: white; /* Цвет текста */
     border: none; /* Убираем границу */
@@ -167,7 +177,7 @@ body{
 
     /* Увеличиваем кнопку открытия формы */
     #open-form-button {
-        font-size: 20px;
+        font-size: 35px;
 
     }
 
@@ -195,7 +205,7 @@ body{
     }
 
     #open-form-button {
-        font-size: 18px;
+        font-size: 35px;
     }
 
     .btn-image {
@@ -300,6 +310,12 @@ button:hover {
         flex-wrap: wrap;
     }
 
+    .title{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     .sort{
         flex-direction: row; /* Две колонки */
         /* Увеличиваем пробелы между элементами */
@@ -320,7 +336,7 @@ button:hover {
     }
 
     #map {
-        max-width: 100%;
+        max-width: 95%;
         left: 0%;
     }
 
@@ -333,9 +349,15 @@ button:hover {
 
 @media (max-width: 768px) and (orientation: landscape){
     #map {
-        max-width: 100%;
+        max-width: 95%;
         left: 0%;
+        height: 70%;
 
+    }
+    .title{
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .flex {
         gap: 15px;
