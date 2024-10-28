@@ -56,6 +56,7 @@
             <button class="btn-image" data-type="music" title="Музыка"><img src="image/music.png" alt=""></button>
         </div>
     </div>
+    <h1 style="margin: 0; padding: 0;">Сортировка</h1>
 
     <div class="sort">
         <button class="btn-image btn-image-sort" data-type="all" title="Все" onclick="filterMarkers('all')"><img src="image/all.png" alt="Все"></button>
@@ -69,12 +70,11 @@
         <button class="btn-image btn-image-sort" data-type="theater" title="Театр" onclick="filterMarkers('theater')"><img src="image/theater.png" alt="Театр"></button>
         <button class="btn-image btn-image-sort" data-type="rest" title="Ресторан" onclick="filterMarkers('rest')"><img src="image/restaurant.png" alt="Ресторан"></button>
         <button class="btn-image btn-image-sort" data-type="music" title="Музыка" onclick="filterMarkers('music')"><img src="image/music.png" alt="Музыка"></button>
-        <button id="open-form-button" onclick="toggleForm()">+</button>
     </div>
    
     
     <div id="map"></div>
-
+    <button id="open-form-button" onclick="toggleForm()">+</button>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </body>
 
