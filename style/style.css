@@ -111,17 +111,14 @@ body{
 }
 
 #open-form-button {
-    position: fixed;
-
-    right: 20px;
-    padding: 16px; /* Increased padding for a larger button */
+    margin-left: 10px; /* Space between dropdown and button */
+    padding: 16px; /* Adjusted padding for a larger button */
     border-radius: 50%;
     background-color: #007bff;
     color: white;
     border: none;
     font-size: 28px; /* Increased font size for better visibility */
     cursor: pointer;
-    z-index: 1000;
     transition: background-color 0.3s ease;
 }
 
