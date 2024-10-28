@@ -51,7 +51,23 @@
         <button class="btn-image" data-type="rest" title="Ресторан"><img src="image/restaurant.png" alt=""></button>
         <button class="btn-image" data-type="music" title="Музыка"><img src="image/music.png" alt=""></button>
     </div>
-
+    <div class="sort">
+        <select name="Section" id="sort" onchange="filterMarkers(this.value)">
+            <option value="all" selected>Все</option>
+            <option value="gym">Спорт залы</option>
+            <option value="karaoke">Караоке</option>
+            <option value="club">Клубы</option>
+            <option value="theater">Театры</option>
+            <option value="rest">Рестораны</option>
+            <option value="cinema">Кинотеатры/Фильмы</option>
+            <option value="music">Выступления/Музыка</option>
+            <option value="football">Футбол</option>
+            <option value="basketball">Баскетбол</option>
+            <option value="voleyball">Волейбол</option>
+        </select>
+        
+    </div>
+    
     <div id="map"></div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>

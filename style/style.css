@@ -132,3 +132,24 @@ button:hover {
         margin-right: auto;
     }
 }
+
+.sort{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 5px;
+}
+
+select{
+    background-color: #4eaaf5;
+    padding: 10px;
+    border-radius: 15px;
+    color: whitesmoke;
+    font-size:large;
+    font-weight: bolder;
+    border: none;
+}
+
+select:hover{
+    background-color: #0059ffa6;
+}
