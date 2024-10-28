@@ -9,7 +9,9 @@ function toggleForm() {
 
 // Закрытие формы при клике на затемненный фон
 document.getElementById("overlay").addEventListener("click", toggleForm);
-var map = L.map('map').setView([52.4345, 30.9754], 13);
+var map = L.map('map', {
+    zoomControl: false // Disable zoom controls
+}).setView([52.4345, 30.9754], 13);
 
 // Добавление тайлов OpenStreetMap
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
