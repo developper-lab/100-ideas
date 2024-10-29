@@ -255,6 +255,7 @@ h1{
 #map {
     height: 60%; /* Уменьшаем высоту карты, чтобы форма ввода была удобной */
     width: 100%;
+    z-index: 0;
     border: 5px solid black;
     box-shadow: 5px 10px 15px 0 rgba(128,0,128, 1);
     margin-left: auto;
@@ -286,6 +287,65 @@ h1{
     cursor: pointer;
 
 }
+.button-container {
+    display: flex;
+    gap: 20px; /* Промежуток между кнопками */
+}
+
+.button.register:hover {
+    background-color: #45a049; /* Цвет кнопки регистрации при наведении */
+    transform: scale(1.05);
+
+}
+.button.register{
+background-color: #74aa77;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.button {
+    padding: 15px 30px; /* Внутренние отступы */
+    font-size: 16px; /* Размер шрифта */
+    color: white; /* Цвет текста */
+
+    text-decoration: none; /* Убираем подчеркивание */
+    border-radius: 5px; /* Закругленные углы */
+    transition: background-color 0.3s, transform 0.3s; /* Плавные переходы */
+}
+.button.login:hover {
+    background-color: #1976D2; /* Цвет кнопки авторизации при наведении */
+    transform: scale(0.95);
+}
+.button.login{
+    background-color: #578bbe;
+}
 
 input, .btn {
     padding: 10px;
@@ -294,7 +354,47 @@ input, .btn {
     width: 50%;
     box-sizing: border-box; /* Обеспечиваем, чтобы элементы не выходили за рамки */
 }
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
 
+.dropdown {
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
 .btn {
     background-color: #0059ffa6;
     border: none;
