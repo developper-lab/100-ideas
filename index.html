@@ -34,9 +34,6 @@
         <div class="button-container">
             <div id="user-menu" class="user-menu" style="display: none;">
                 <span id="username-display"></span>
-                <div id="user-men">
-                    <span id="user-name"></span> <!-- Здесь будет имя пользователя -->
-                </div>
                 <div class="dropdown">
                     <button class="dropbtn">▼</button>
                     <div class="dropdown-content">
@@ -45,8 +42,8 @@
                     </div>
                 </div>
             </div>
-            <a id="registration-button" href="dist/registration.html" class="button register"
-                style="display: block;">Регистрация</a>
+            <a id="login-button" href="src/login.html" class="button login" style="display: block;">Вход</a>
+            <a id="registration-button" href="dist/registration.html" class="button register" style="display: block;">Регистрация</a>
         </div>
     </header>
     <!-- Кнопка открытия формы -->
@@ -119,37 +116,43 @@
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js';
         import { getDatabase } from 'https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js';
         import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js';
-
-        // Ваши настройки Firebase
+    
+        // Firebase конфигурация
         const firebaseConfig = {
             apiKey: "AIzaSyDaEEyvxI6ukPznu1BpeO2qZ9vy_8jCDyo",
             authDomain: "databise-aab06.firebaseapp.com",
+            databaseURL: "https://databise-aab06-default-rtdb.firebaseio.com",
             projectId: "databise-aab06",
             storageBucket: "databise-aab06.appspot.com",
             messagingSenderId: "687844886764",
-            appId: "1:687844886764:web:20596d94b0e25298063dc9"
+            appId: "1:687844886764:web:20596d94b0e25298063dc9",
+            measurementId: "G-PP7W9B2VN9"
         };
-
+    
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const database = getDatabase(app);
+    
+        // Проверка авторизации пользователя
+        onAuthStateChanged(auth, (user) => {
+            const registrationButton = document.getElementById('registration-button');
+            const loginbutton = document.getElementById("login-button")
+            const userMenu = document.getElementById('user-menu');
+            const usernameDisplay = document.getElementById('username-display');
+    
+            if (user) {
+                registrationButton.style.display = 'none'; // Скрыть кнопку регистрации
+                loginbutton.style.display = 'none'; // Скрыть кнопку регистрации
+                userMenu.style.display = 'block'; // Показать меню пользователя
+                usernameDisplay.innerText = user.email; // Показать email пользователя
+            } else {
+                registrationButton.style.display = 'block'; // Показать кнопку регистрации
+                loginbutton.style.display = 'block'; // Показать кнопку регистрации
 
-        // Проверка статуса авторизации
-        // auth.onAuthStateChanged((user) => {
-        //     const registrationButton = document.getElementById('registration-button');
-        //     const userMenu = document.getElementById('user-menu');
-        //     const usernameDisplay = document.getElementById('username-display');
-
-        //     if (user) {
-        //         registrationButton.style.display = 'none'; // Скрыть кнопку регистрации
-        //         userMenu.style.display = 'block'; // Показать меню пользователя
-        //         usernameDisplay.innerText = user.displayName || user.email; // Отображение имени пользователя
-        //     } else {
-        //         registrationButton.style.display = 'block'; // Показать кнопку регистрации
-        //         userMenu.style.display = 'none'; // Скрыть меню пользователя
-        //     }
-        // });
-
+                userMenu.style.display = 'none'; // Скрыть меню пользователя
+            }
+        });
+    
         // Логика выхода из аккаунта
         document.getElementById('logout-button').addEventListener('click', () => {
             auth.signOut().then(() => {

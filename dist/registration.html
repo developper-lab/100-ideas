@@ -43,12 +43,9 @@
     </div>
 
     <script type="module">
-        // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-        import { getDatabase } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
         import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-
-        // Your web app's Firebase configuration
+    
         const firebaseConfig = {
             apiKey: "AIzaSyDaEEyvxI6ukPznu1BpeO2qZ9vy_8jCDyo",
             authDomain: "databise-aab06.firebaseapp.com",
@@ -59,29 +56,23 @@
             appId: "1:687844886764:web:20596d94b0e25298063dc9",
             measurementId: "G-PP7W9B2VN9"
         };
-
-        // Initialize Firebase
+    
         const app = initializeApp(firebaseConfig);
         const auth = getAuth();
-
+    
         document.getElementById('loginForm').addEventListener('submit', (e) => {
             e.preventDefault(); // предотвращаем отправку формы
-
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
-            var username = document.getElementById('username').value;
-
+    
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+    
             createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    const user = userCredential.user;
                     alert('Пользователь создан');
-                    // Перенаправление на начальную страницу
-                    window.location.href = '../index.html'; // Укажите путь к вашей начальной странице
+                    window.location.href = '../index.html'; // Перенаправление на главную страницу
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    alert(errorMessage);
+                    alert(error.message);
                 });
         });
     </script>

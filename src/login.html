@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Авторизация</title>
+</head>
+<body>
+	<div class="container">
+		<div class="screen">
+			<div class="screen__content">
+				<form class="login" id="loginForm">
+					<div class="login__field">
+						<i class="login__icon fas fa-user"></i>
+						<input type="text" id="email" class="login__input" placeholder="User name / Email" required>
+					</div>
+					<div class="login__field">
+						<i class="login__icon fas fa-lock"></i>
+						<input type="password" id="password" class="login__input" placeholder="Password" required>
+					</div>
+					<button class="button login__submit" type="submit">
+						<span class="button__text">Log In Now</span>
+						<i class="button__icon fas fa-chevron-right"></i>
+					</button>				
+				</form>
+				
+			</div>
+			<div class="screen__background">
+				<span class="screen__background__shape screen__background__shape4"></span>
+				<span class="screen__background__shape screen__background__shape3"></span>		
+				<span class="screen__background__shape screen__background__shape2"></span>
+				<span class="screen__background__shape screen__background__shape1"></span>
+			</div>		
+		</div>
+	</div>
+
+	<!-- Firebase SDK -->
+	<script type="module">
+		// Import the Firebase SDK modules
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+		import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+		// Firebase configuration
+		const firebaseConfig = {
+            apiKey: "AIzaSyDaEEyvxI6ukPznu1BpeO2qZ9vy_8jCDyo",
+            authDomain: "databise-aab06.firebaseapp.com",
+            databaseURL: "https://databise-aab06-default-rtdb.firebaseio.com",
+            projectId: "databise-aab06",
+            storageBucket: "databise-aab06.appspot.com",
+            messagingSenderId: "687844886764",
+            appId: "1:687844886764:web:20596d94b0e25298063dc9",
+            measurementId: "G-PP7W9B2VN9"
+        };
+
+		// Initialize Firebase
+		const app = initializeApp(firebaseConfig);
+		const auth = getAuth(app);
+
+		// Form submit handler
+		document.getElementById('loginForm').addEventListener('submit', (e) => {
+			e.preventDefault();
+
+			const email = document.getElementById('email').value;
+			const password = document.getElementById('password').value;
+
+			// Sign in with Firebase
+			signInWithEmailAndPassword(auth, email, password)
+				.then((userCredential) => {
+					const user = userCredential.user;
+					alert('Вы успешно вошли!');
+					// Redirect to main page
+					window.location.href = '../index.html';
+				})
+				.catch((error) => {
+					alert('Ошибка входа: ' + error.message);
+				});
+		});
+	</script>
+</body>
+</html>
