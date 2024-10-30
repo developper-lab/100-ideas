@@ -314,6 +314,7 @@ function filterMarkers(type) {
 }
 
 
+
 function addPresetMarkers() {
     var places = [
         //GYM

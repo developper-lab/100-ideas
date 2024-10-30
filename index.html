@@ -37,7 +37,7 @@
                 <div class="dropdown">
                     <button class="dropbtn">▼</button>
                     <div class="dropdown-content">
-                        <a href="my-account.html">Мой кабинет</a>
+                        <a href="mykab/index.html">Мой кабинет</a>
                         <a href="#" id="logout-button">Выход</a>
                     </div>
                 </div>
@@ -139,16 +139,19 @@
             const loginbutton = document.getElementById("login-button")
             const userMenu = document.getElementById('user-menu');
             const usernameDisplay = document.getElementById('username-display');
+            const plus = document.getElementById("open-form-button")
     
             if (user) {
                 registrationButton.style.display = 'none'; // Скрыть кнопку регистрации
                 loginbutton.style.display = 'none'; // Скрыть кнопку регистрации
                 userMenu.style.display = 'block'; // Показать меню пользователя
+                plus.style.display = 'block';
+
                 usernameDisplay.innerText = user.email; // Показать email пользователя
             } else {
                 registrationButton.style.display = 'block'; // Показать кнопку регистрации
                 loginbutton.style.display = 'block'; // Показать кнопку регистрации
-
+                plus.style.display = 'none';
                 userMenu.style.display = 'none'; // Скрыть меню пользователя
             }
         });
