@@ -1,3 +1,7 @@
+
+
+
+
 function toggleForm() {
     const overlay = document.getElementById("overlay");
     const formContainer = document.getElementById("address-form-container");
@@ -143,18 +147,68 @@ function chooseIcon(type) {
     }
 }
 
+
+
+function createImageSlider(images) {
+    if (!images || images.length === 0) return '';
+
+    let imageSliderHtml = `<div class="image-slider">`;
+    images.forEach((imgSrc, index) => {
+        imageSliderHtml += `<div class="slide" style="display: ${index === 0 ? 'block' : 'none'};">
+                                <img src="${imgSrc}">
+                            </div>`;
+    });
+    imageSliderHtml += `
+        <button class="prev" onclick="changeSlide(-1)">❮</button>
+        <button class="next" onclick="changeSlide(1)">❯</button>
+    </div>`;
+    return imageSliderHtml;
+}
+
+// Переключение слайдов
+let currentSlideIndex = 0;
+function changeSlide(n) {
+    const slides = document.querySelectorAll('.slide');
+    slides[currentSlideIndex].style.display = 'none';
+    currentSlideIndex = (currentSlideIndex + n + slides.length) % slides.length;
+    slides[currentSlideIndex].style.display = 'block';
+}
+function changeSlide(sliderIndex, n) {
+    let slider = document.getElementById(`slider-${sliderIndex}`);
+    let slides = slider.getElementsByClassName('slide');
+    let currentIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
+
+    // Убираем класс active с текущего слайда
+    slides[currentIndex].classList.remove('active');
+
+    // Вычисляем следующий слайд и добавляем ему класс active
+    let nextIndex = (currentIndex + n + slides.length) % slides.length;
+    slides[nextIndex].classList.add('active');
+}
 // Создание содержимого всплывающего окна с кнопкой удаления
 // Создание содержимого всплывающего окна с кнопкой удаления
 function createPopupContent(markerData, index) {
-    let infoHtml = markerData.info ? `<br>${markerData.info}` : ''; // Добавьте это
-
-    // Убираем кнопку удаления, если маркер добавлен вручную
+    let infoHtml = markerData.info ? `<br>${markerData.info}` : '';
+    let nameHtml = markerData.name ? `<b>${markerData.name}</b> <br>` : '';
     let deleteButtonHtml = markerData.isPreset ? '' : `<br><button class='image-btn' onclick="deleteMarker(${index})">Удалить маркер</button>`;
-    
-    // Проверяем, определено ли имя маркера
-    let nameHtml = markerData.name ? `<b>${markerData.name}</b> <br>` : ''; // Здесь 'Без названия' — текст по умолчанию
 
-    return `${nameHtml}${markerData.address}${infoHtml}${deleteButtonHtml}`;
+    // Генерация слайдера изображений
+    let imageHtml = '';
+    if (Array.isArray(markerData.image) && markerData.image.length > 0) {
+        imageHtml += `<div class="slider" id="slider-${index}">`;
+        markerData.image.forEach((img, imgIndex) => {
+            imageHtml += `
+                <div class="slide ${imgIndex === 0 ? 'active' : ''}">
+                    <img class="image-slide" src="${img}">
+                </div>`;
+        });
+        imageHtml += `
+            <button class="prev" onclick="changeSlide(${index}, -1)">&#10094;</button>
+            <button class="next" onclick="changeSlide(${index}, 1)">&#10095;</button>
+        </div>`;
+    }
+
+    return `${nameHtml}${markerData.address}${infoHtml}${imageHtml}${deleteButtonHtml}`;
 }
 
 
@@ -250,7 +304,8 @@ function findAddress() {
                 lon: coords.lon,
                 address: address,
                 info: message,
-                type: selectedType
+                type: selectedType,
+                image: img
             };
 
             const iconType = chooseIcon(selectedType);
@@ -263,7 +318,6 @@ function findAddress() {
 
             markers.push(markerData); // Сохраняем данные о маркере
             saveMarkers(); // Сохраняем маркеры в localStorage
-
             // Перемещаем карту к маркеру
             map.setView([coords.lat, coords.lon], 15);
 
@@ -321,7 +375,7 @@ function addPresetMarkers() {
         { lat: 52.4052, lon: 30.9215, name: 'Адреналин', address: 'улица Гагарина 65,', type: 'gym' },
         { lat: 52.4248, lon: 31.0105, name: 'Фитнес-клуб Кенгуру', address: 'пр-т. Ленина 3', type: 'gym' },
         { lat: 52.4093, lon: 30.9484, name: 'Тренажерный зал "Maximus"', address: 'Волгоградская ул. 5,', type: 'gym' },
-        { lat: 52.4024, lon: 30.9202, name: 'Фитнес-клуб "Joker Gym" тренажерный зал', address: 'ул. 70 лет БССР дом 2а', type: 'gym', info:`'Телефон: +375298213193 <br> Режим работы: пон-пят 8:30.00-21.00 <br> суб 9:30.00-17.00 вс ВЫХОДНОЙ' `},
+        { lat: 52.4024, lon: 30.9202, name: 'Фитнес-клуб "Joker Gym" тренажерный зал', address: 'ул. 70 лет БССР дом 2а', type: 'gym', info:'Телефон: +375298213193 <br> Режим работы: пон-пят 8:30.00-21.00 <br> суб 9:30.00-17.00 вс ВЫХОДНОЙ' , image: ['image/Joker.jpg' , 'image/Joker2.jpg']},
         { lat: 52.4228, lon: 31.0012, name: 'Атлет фитнес-центр', address: 'улица Гагарина 57', type: 'gym'},
         { lat: 52.4259, lon: 31.0133, name: 'Фитнес-клуб DMFITNESS', address: 'ул. Трудовая 3а', type: 'gym' },
         { lat: 52.4252, lon: 31.0083, name: 'ФИТНЕС INGRAVITY', address: 'пр-т. Ленина 10', type: 'gym' },
@@ -361,6 +415,7 @@ function addPresetMarkers() {
             name: place.name,
             type: place.type,
             info: place.info || '', // Обязательно передайте info, если она есть
+            image:place.image || '',
             isPreset: true // Указываем, что это предустановленный маркер
         };
         
@@ -377,7 +432,6 @@ function addPresetMarkers() {
     // Отображаем все маркеры при начальной загрузке
     filterMarkers('all');
 }
-
 
 
 // Загрузка всех маркеров при запуске страницы

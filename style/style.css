@@ -401,6 +401,57 @@ input, .btn {
     color: white;
 }
 
+.image-slide{
+    max-width: 50%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-left: 70px;
+    /* border: 1px solid black; */
+    box-shadow: 0px 8px 16px 0px rgb(0, 0, 0);
+    border-radius: 10px;
+    
+
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
+}
+
+.slide {
+    display: none;
+}
+
+.slide.active {
+    display: block;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.next {
+    right: 0;
+    border-radius: 0 3px 3px 0;
+}
 button:hover {
     background-color: #07eee2;
     cursor: pointer;
@@ -412,7 +463,9 @@ button:hover {
         padding: 10px 5px;
         flex-wrap: wrap;
     }
-
+    .image-slide{
+        max-width: 50%;
+    }
     .title{
         display: flex;
         align-items: center;
@@ -456,6 +509,9 @@ button:hover {
         left: 0%;
         height: 70%;
 
+    }
+    .image-slide{
+        max-width: 50%;
     }
     .title{
         display: flex;
