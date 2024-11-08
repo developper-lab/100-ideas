@@ -149,30 +149,24 @@ function chooseIcon(type) {
 
 
 
-function createImageSlider(images) {
-    if (!images || images.length === 0) return '';
+// function createImageSlider(images) {
+//     if (!images || images.length === 0) return '';
 
-    let imageSliderHtml = `<div class="image-slider">`;
-    images.forEach((imgSrc, index) => {
-        imageSliderHtml += `<div class="slide" style="display: ${index === 0 ? 'block' : 'none'};">
-                                <img src="${imgSrc}">
-                            </div>`;
-    });
-    imageSliderHtml += `
-        <button class="prev" onclick="changeSlide(-1)">❮</button>
-        <button class="next" onclick="changeSlide(1)">❯</button>
-    </div>`;
-    return imageSliderHtml;
-}
+//     let imageSliderHtml = `<div class="image-slider">`;
+//     images.forEach((imgSrc, index) => {
+//         imageSliderHtml += `<div class="slide" style="display: ${index === 0 ? 'block' : 'none'};">
+//                                 <img src="${imgSrc}">
+//                             </div>`;
+//     });
+//     imageSliderHtml += `
+//         <button class="prev" onclick="changeSlide(-1)">❮</button>
+//         <button class="next" onclick="changeSlide(1)">❯</button>
+//     </div>`;
+//     return imageSliderHtml;
+// }
 
 // Переключение слайдов
 let currentSlideIndex = 0;
-function changeSlide(n) {
-    const slides = document.querySelectorAll('.slide');
-    slides[currentSlideIndex].style.display = 'none';
-    currentSlideIndex = (currentSlideIndex + n + slides.length) % slides.length;
-    slides[currentSlideIndex].style.display = 'block';
-}
 function changeSlide(sliderIndex, n) {
     let slider = document.getElementById(`slider-${sliderIndex}`);
     let slides = slider.getElementsByClassName('slide');
@@ -192,23 +186,23 @@ function createPopupContent(markerData, index) {
     let nameHtml = markerData.name ? `<b>${markerData.name}</b> <br>` : '';
     let deleteButtonHtml = markerData.isPreset ? '' : `<br><button class='image-btn' onclick="deleteMarker(${index})">Удалить маркер</button>`;
 
-    // Генерация слайдера изображений
-    let imageHtml = '';
-    if (Array.isArray(markerData.image) && markerData.image.length > 0) {
-        imageHtml += `<div class="slider" id="slider-${index}">`;
-        markerData.image.forEach((img, imgIndex) => {
-            imageHtml += `
-                <div class="slide ${imgIndex === 0 ? 'active' : ''}">
-                    <img class="image-slide" src="${img}">
-                </div>`;
-        });
-        imageHtml += `
-            <button class="prev" onclick="changeSlide(${index}, -1)">&#10094;</button>
-            <button class="next" onclick="changeSlide(${index}, 1)">&#10095;</button>
-        </div>`;
-    }
+    // // Генерация слайдера изображений
+    // let imageHtml = '';
+    // if (Array.isArray(markerData.image) && markerData.image.length > 0) {
+    //     imageHtml += `<div class="slider" id="slider-${index}">`;
+    //     markerData.image.forEach((img, imgIndex) => {
+    //         imageHtml += `
+    //             <div class="slide ${imgIndex === 0 ? 'active' : ''}">
+    //                 <img class="image-slide" src="${img}">
+    //             </div>`;
+    //     });
+    //     imageHtml += `
+    //         <button class="prev" onclick="changeSlide(${index}, -1)">&#10094;</button>
+    //         <button class="next" onclick="changeSlide(${index}, 1)">&#10095;</button>
+    //     </div>`;
+    // }
 
-    return `${nameHtml}${markerData.address}${infoHtml}${imageHtml}${deleteButtonHtml}`;
+    return `${nameHtml}${markerData.address}${infoHtml}${deleteButtonHtml}`;
 }
 
 
@@ -305,7 +299,7 @@ function findAddress() {
                 address: address,
                 info: message,
                 type: selectedType,
-                image: img
+                // image: img || [] 
             };
 
             const iconType = chooseIcon(selectedType);
@@ -415,7 +409,7 @@ function addPresetMarkers() {
             name: place.name,
             type: place.type,
             info: place.info || '', // Обязательно передайте info, если она есть
-            image:place.image || '',
+            // image:place.image || '',
             isPreset: true // Указываем, что это предустановленный маркер
         };
         

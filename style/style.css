@@ -8,8 +8,14 @@ body, html {
 body{
     width: 100%;
    box-sizing: border-box;
+   background-color: #00cdd44b;
+   background-image: url(../image/i.webp);
+   background-size: cover;
+   background-repeat: no-repeat;
 }
-
+span{
+    color: white;
+}
 
 h1{
     margin: 0;
@@ -19,6 +25,10 @@ h1{
 
 .title{
     margin-left: 10px;
+    font-size: 28px;
+    padding-top: 20px;
+    color: white;
+
 }
 
 #overlay {
@@ -402,16 +412,11 @@ input, .btn {
 }
 
 .image-slide{
-    max-width: 50%;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    margin-left: 70px;
+    max-width: 70%;
     /* border: 1px solid black; */
     box-shadow: 0px 8px 16px 0px rgb(0, 0, 0);
-    border-radius: 10px;
-    
-
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .slider {
@@ -426,9 +431,10 @@ input, .btn {
 }
 
 .slide.active {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
 .prev, .next {
     cursor: pointer;
     position: absolute;
