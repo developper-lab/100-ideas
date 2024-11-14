@@ -95,8 +95,7 @@ var theaterIcon = L.icon({
 });
 // Сохранение маркеров в localStorage
 function saveMarkers() {
-    const userMarkers = markers.filter(marker => !marker.isPreset);
-    localStorage.setItem('markers', JSON.stringify(userMarkers));
+    localStorage.setItem('markers', JSON.stringify(markers));
 }
 
 // Загрузка маркеров из localStorage
@@ -112,7 +111,6 @@ function loadMarkers() {
         });
     }
 }
-
 
 
 
@@ -367,7 +365,7 @@ function filterMarkers(type) {
 
 function addPresetMarkers() {
     var places = [
-        // GYM
+        //GYM
         { lat: 52.4052, lon: 30.9215, name: 'Адреналин', address: 'улица Гагарина 65,', type: 'gym' },
         { lat: 52.4248, lon: 31.0105, name: 'Фитнес-клуб Кенгуру', address: 'пр-т. Ленина 3', type: 'gym' },
         { lat: 52.4093, lon: 30.9484, name: 'Тренажерный зал "Maximus"', address: 'Волгоградская ул. 5,', type: 'gym' },
@@ -376,7 +374,7 @@ function addPresetMarkers() {
         { lat: 52.4259, lon: 31.0133, name: 'Фитнес-клуб DMFITNESS', address: 'ул. Трудовая 3а', type: 'gym' },
         { lat: 52.4252, lon: 31.0083, name: 'ФИТНЕС INGRAVITY', address: 'пр-т. Ленина 10', type: 'gym' },
 
-        // CLUB
+        //CLUB
         { lat: 52.4123, lon: 30.9542, name: 'стейк бар ATLANTA', address: 'Речицкий просп. 24', type: 'club' },
         { lat: 52.4041, lon: 30.9605, name: 'Чисто Пивной Ресторанчик', address: 'улица Братьев Лизюковых 4А', type: 'club',},
         { lat: 52.4245, lon: 31.0044, name: 'Black Bar', address: 'улица Катунина 14', type: 'club' },
@@ -385,19 +383,22 @@ function addPresetMarkers() {
         { lat: 52.4272, lon: 31.0200, name: 'Бар Квартирник', address: 'Билецкий спуск 1', type: 'club' },
         { lat: 52.4265, lon: 31.0094, name: 'Бар Первый', address: 'ул. Кирова д. 1', type: 'club' },
 
-        // REST
+        //REST
         { lat: 52.4097, lon: 30.9505, name: 'Ресторан Вилла Грилла', address: 'Волгоградская ул. 45', type: 'rest' },
         { lat: 52.4273, lon: 31.0036, name: 'Сябры', address: 'пр-т. Ленина 33', type: 'rest' },
         { lat: 52.4284, lon: 31.0135, name: 'Старое время', address: 'Krest`yanskaya 14', type: 'rest' },
         { lat: 52.4242, lon: 31.0075, name: 'Бацькі', address: 'Internatsional`naya 3', type: 'rest' },
         { lat: 52.4090, lon: 30.9325, name: 'Ресторан Речицкий', address: 'Междугородняя ул. 2', type: 'rest' },
 
-        // KARAOKE
+        //KARAOKE
         { lat: 52.4278, lon: 31.0084, name: 'Караоке клуб хХх', address: 'ул. Кирова 9', type: 'karaoke' },
         { lat: 52.4295, lon: 31.0115, name: 'San Remo', address: 'ул. Советская 26а', type: 'karaoke' },
         { lat: 52.3868, lon: 31.0225, name: 'JAGGER karaoke project', address: 'вуліца Дастаеўскага 1-1', type: 'karaoke' },
         { lat: 52.4230, lon: 31.0140, name: 'Nota', address: 'пл. Ленина 2', type: 'karaoke' },
         { lat: 52.4274, lon: 31.0145, name: 'Новое Время', address: 'ул. Ланге 17', type: 'karaoke' }
+
+
+
     ];
 
     places.forEach(function (place) {
@@ -408,22 +409,24 @@ function addPresetMarkers() {
             name: place.name,
             type: place.type,
             info: place.info || '', // Обязательно передайте info, если она есть
+            // image:place.image || '',
             isPreset: true // Указываем, что это предустановленный маркер
         };
         
         const iconType = chooseIcon(place.type);
         
-        // Добавляем новый предустановленный маркер на карту
-        const marker = L.marker([place.lat, place.lon], { icon: iconType }).addTo(map);
-        marker.bindPopup(createPopupContent(markerData, markers.length));
-        markerObjects[markers.length] = marker; // Сохраняем объект маркера
+        // // Добавляем новый предустановленный маркер на карту
+        // const marker = L.marker([place.lat, place.lon], { icon: iconType }).addTo(map);
+        // marker.bindPopup(createPopupContent(markerData, markers.length));
+        // markerObjects[markers.length] = marker; // Сохраняем объект маркера
         
-        // Предустановленные маркеры не добавляются в массив, который сохраняется в localStorage
+        // markers.push(markerData); // Сохраняем данные о маркере
     });
 
     // Отображаем все маркеры при начальной загрузке
     filterMarkers('all');
 }
+
 
 // Загрузка всех маркеров при запуске страницы
 loadMarkers();

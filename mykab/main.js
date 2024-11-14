@@ -356,6 +356,8 @@ function filterMarkers(type) {
         }
     });
 }
-
+document.getElementById("btn-link").addEventListener("click",function(){
+    window.location.href = '../index.html'
+});
 // Загрузка всех маркеров при запуске страницы
 loadMarkers();
