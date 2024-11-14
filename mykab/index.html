@@ -37,7 +37,6 @@
                 <div class="dropdown">
                     <button class="dropbtn">▼</button>
                     <div class="dropdown-content">
-                        <a href="mykab/index.html">Мой кабинет</a>
                         <a href="#" id="logout-button">Выход</a>
                     </div>
                 </div>
@@ -135,6 +134,7 @@
         document.getElementById('logout-button').addEventListener('click', () => {
             auth.signOut().then(() => {
                 alert('Вы вышли из аккаунта');
+                window.location.href = '../index.html'
             }).catch((error) => {
                 console.error('Ошибка выхода:', error);
             });

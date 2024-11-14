@@ -1,7 +1,3 @@
-
-
-
-
 function toggleForm() {
     const overlay = document.getElementById("overlay");
     const formContainer = document.getElementById("address-form-container");
@@ -360,5 +356,6 @@ function filterMarkers(type) {
         }
     });
 }
+
 // Загрузка всех маркеров при запуске страницы
 loadMarkers();
