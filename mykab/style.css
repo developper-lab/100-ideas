@@ -1,0 +1,562 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    width: 100%;
+   box-sizing: border-box;
+   background-color: #00cdd44b;
+   background-size: cover;
+   background-repeat: no-repeat;
+}
+span{
+    color: black;
+}
+
+h1{
+    margin: 0;
+    padding: 0;
+}
+
+
+.title{
+    margin-left: 10px;
+    font-size: 28px;
+    padding-top: 20px;
+    color: black;
+
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+}
+
+/* Обновленные стили для формы */
+#address-form-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    width: 90%;
+    max-width: 400px;
+}
+
+#address-form-container label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+#address-form-container input,
+#address-form-container .btn {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+#address-form-container input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+#address-form-container .btn {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#address-form-container .btn:hover {
+    background-color: #0059d4;
+}
+
+/* Кнопки с изображениями внутри формы */
+.flex {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    margin-top: 20px;
+}
+
+.btn-image {
+    transition: transform 0.3s, box-shadow 0.2s;
+    padding: 8px; /* Добавлено небольшое внутреннее отступление */
+    border-radius: 10px;
+    width: 60px;
+    height: 60px;
+    background-color: #0059ffa6;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+.btn-image-sort {
+    transition: transform 0.3s, box-shadow 0.2s;
+    padding: 8px; /* Добавлено небольшое внутреннее отступление */
+    border-radius: 10px;
+    width: 60px;
+    height: 60px;
+    background-color: #0059ffa6;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.btn-image img {
+    width: auto;
+    height: 100%; /* Высота изображения займет 100% высоты кнопки */
+    object-fit: contain;
+}
+
+.btn-image-sort img {
+    width: auto;
+    height: 100%; /* Высота изображения займет 100% высоты кнопки */
+    object-fit: contain;
+}
+
+.btn-image:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+#open-form-button {
+    display: flex;
+    position: absolute; /* Позиционирование относительно ближайшего позиционированного родителя */
+    bottom: 20px; /* Расстояние от низа */
+    right: 5px; /* Расстояние от правого края */
+    padding: 5px 15px; /* Отступы для увеличения кнопки */
+    text-align: center;
+    align-items: center;
+    border-radius: 50%; /* Округлая форма */
+    background-color: #007bff; /* Цвет фона */
+    color: white; /* Цвет текста */
+    border: none; /* Убираем границу */
+    font-size: 28px; /* Размер шрифта */
+    cursor: pointer; /* Указатель при наведении */
+    transition: background-color 0.3s ease; /* Плавный переход цвета фона */
+    z-index: 1000; /* Чтобы кнопка была поверх других элементов */
+}
+
+#open-form-button:hover {
+    background-color: #0059d4;
+}
+
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 768px) {
+    /* Уменьшаем ширину формы */
+    #address-form-container {
+        width: 95%;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    /* Уменьшаем размеры шрифтов и полей */
+    #address-form-container input,
+    #address-form-container .btn {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+    /* Увеличиваем кнопку открытия формы */
+    #open-form-button {
+        font-size: 30px;
+
+    }
+
+    /* Уменьшаем иконки кнопок */
+    .btn-image {
+        width: 45px;
+        height: 45px;
+    }
+
+    .flex {
+        gap: 8px;
+        padding-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Дополнительные настройки для очень маленьких экранов */
+    #address-form-container {
+        padding: 15px;
+    }
+
+    #address-form-container input,
+    #address-form-container .btn {
+        font-size: 0.8em;
+    }
+
+    #open-form-button {
+        font-size: 30px;
+    }
+
+    .btn-image {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.image-btn{
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    border-radius:10px;
+    height: 50px;
+    font-weight:bold;
+    background-color: #0059ffa6;
+    color: white;
+    border: none;   
+    box-sizing: border-box;
+    text-align: center;
+    justify-content: center; /* Горизонтальное центрирование */
+    align-items: center; /* Вертикальное центрирование */
+}
+
+.btn-image {
+    transition: transform 1s, box-shadow 0.2s;
+    padding: 10px;
+    border-radius: 5px;
+    width: 50px; /* Увеличиваем ширину кнопок для более удобного отображения */
+    height: 50px; /* Можно также задать высоту для сохранения пропорций */
+    box-sizing: border-box;
+    background-color: #0059ffa6;
+    border: none;
+    color: white;
+}
+
+.btn-image.selected {
+    transform: translateY(-10px); /* Поднимает элемент */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.945); /* Добавляет тень */
+    border: 2px solid #000000; /* Изменяет цвет границы при выборе */
+    border-radius: 5px; /* Скругляет углы */
+}
+
+#map {
+    height: 60%; /* Уменьшаем высоту карты, чтобы форма ввода была удобной */
+    width: 100%;
+    z-index: 0;
+    border: 5px solid black;
+    box-shadow: 5px 10px 15px 0 rgba(128,0,128, 1);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#address-form {
+    padding: 10px;
+    display: flex;
+    gap: 10px;/* Пробелы между элементами */
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap; 
+}
+
+.btn-image-sort{
+    gap: 5px;
+    transition: transform 0.3s, box-shadow 0.2s;
+    padding: 8px; /* Добавлено небольшое внутреннее отступление */
+    border-radius: 10px;
+    width: 50px;
+    margin: 2px;
+    height: 50px;
+    background-color: #0059ffa6;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+.button-container {
+    display: flex;
+    gap: 20px; /* Промежуток между кнопками */
+}
+
+.button.register:hover {
+    background-color: #45a049; /* Цвет кнопки регистрации при наведении */
+    transform: scale(1.05);
+
+}
+.button.register{
+background-color: #74aa77;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.button {
+    padding: 15px 30px; /* Внутренние отступы */
+    font-size: 16px; /* Размер шрифта */
+    color: white; /* Цвет текста */
+
+    text-decoration: none; /* Убираем подчеркивание */
+    border-radius: 5px; /* Закругленные углы */
+    transition: background-color 0.3s, transform 0.3s; /* Плавные переходы */
+}
+.button.login:hover {
+    background-color: #1976D2; /* Цвет кнопки авторизации при наведении */
+    transform: scale(0.95);
+}
+.button.login{
+    background-color: #578bbe;
+}
+
+input, .btn {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    width: 50%;
+    box-sizing: border-box; /* Обеспечиваем, чтобы элементы не выходили за рамки */
+}
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+.btn {
+    background-color: #0059ffa6;
+    border: none;
+    color: white;
+}
+
+.image-slide{
+    max-width: 70%;
+    /* border: 1px solid black; */
+    box-shadow: 0px 8px 16px 0px rgb(0, 0, 0);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
+}
+
+.slide {
+    display: none;
+}
+
+.slide.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.next {
+    right: 0;
+    border-radius: 0 3px 3px 0;
+}
+button:hover {
+    background-color: #07eee2;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .flex {
+        gap: 5px;
+        padding: 10px 5px;
+        flex-wrap: wrap;
+    }
+    .image-slide{
+        max-width: 50%;
+    }
+    .title{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sort{
+        flex-direction: row; /* Две колонки */
+        /* Увеличиваем пробелы между элементами */
+    }
+
+    .btn-image {
+        width: 100px;
+        height: 50px;
+    }
+
+    .btn-image-sort{
+        width: 30px;
+        height: 40px;
+        align-items: center;
+        justify-content: start;
+        display: flex; /* Убедитесь, что это значение установлено */
+        flex-direction: column; /* Измените направление на столбец */
+    }
+
+    #map {
+        max-width: 95%;
+        left: 0%;
+    }
+
+    input,
+    .btn {
+        font-size: 1em;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) and (orientation: landscape){
+    #map {
+        max-width: 95%;
+        left: 0%;
+        height: 70%;
+
+    }
+    .image-slide{
+        max-width: 50%;
+    }
+    .title{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .flex {
+        gap: 15px;
+        padding: 20px;
+        flex-wrap: wrap;
+        max-width: 559px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.sort {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row; /* Изменяем на row для горизонтального размещения */
+    padding: 20px 5px;
+}
+
+select{
+    background-color: #4eaaf5;
+    padding: 10px;
+    border-radius: 15px;
+    color: whitesmoke;
+    font-size:large;
+    font-weight: bolder;
+    border: none;
+}
+
+select:hover{
+    background-color: #0059ffa6;
+}
+.btn-link{
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #4eaaf5;
+    margin-top: 20px;
+}
