@@ -1,7 +1,3 @@
-
-
-
-
 function toggleForm() {
     const overlay = document.getElementById("overlay");
     const formContainer = document.getElementById("address-form-container");
@@ -418,9 +414,9 @@ function addPresetMarkers() {
         // Добавляем новый предустановленный маркер на карту
         const marker = L.marker([place.lat, place.lon], { icon: iconType }).addTo(map);
         marker.bindPopup(createPopupContent(markerData, markers.length));
-        // markerObjects[markers.length] = marker; // Сохраняем объект маркера
+        markerObjects[markers.length] = marker; // Сохраняем объект маркера
         
-        // markers.push(markerData); // Сохраняем данные о маркере
+        markers.push(markerData); // Сохраняем данные о маркере
 
 
     });
@@ -428,7 +424,6 @@ function addPresetMarkers() {
     // Отображаем все маркеры при начальной загрузке
     filterMarkers('all');
 }
-
 localStorage.removeItem('marker');
 
 // Загрузка всех маркеров при запуске страницы
