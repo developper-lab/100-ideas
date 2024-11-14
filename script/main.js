@@ -421,14 +421,15 @@ function addPresetMarkers() {
         // markerObjects[markers.length] = marker; // Сохраняем объект маркера
         
         // markers.push(markerData); // Сохраняем данные о маркере
-localStorage.clear();
-        
+
+
     });
 
     // Отображаем все маркеры при начальной загрузке
     filterMarkers('all');
 }
 
+localStorage.removeItem('marker');
 
 // Загрузка всех маркеров при запуске страницы
 loadMarkers();
