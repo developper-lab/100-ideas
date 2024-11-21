@@ -414,7 +414,7 @@ function addPresetMarkers() {
         // Добавляем новый предустановленный маркер на карту
         const marker = L.marker([place.lat, place.lon], { icon: iconType }).addTo(map);
         marker.bindPopup(createPopupContent(markerData, markers.length));
-        markerObjects[markers.length] = marker; // Сохраняем объект маркера
+        // markerObjects[markers.length] = marker; // Сохраняем объект маркера
         
         markers.push(markerData); // Сохраняем данные о маркере
 

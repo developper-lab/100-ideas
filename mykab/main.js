@@ -96,10 +96,19 @@ function saveMarkers() {
 }
 
 // Загрузка маркеров из localStorage
+// Загрузка маркеров из localStorage
 function loadMarkers() {
+    localStorage.removeItem('marker'); // Удаление старого ключа, если он есть
+
     var savedMarkers = JSON.parse(localStorage.getItem('markers'));
     if (savedMarkers) {
-        markers = savedMarkers;
+        // Фильтрация: оставляем только пользовательские маркеры
+        markers = savedMarkers.filter(markerData => !markerData.isPreset);
+
+        // Сохраняем отфильтрованные маркеры обратно в localStorage
+        saveMarkers();
+
+        // Перерисовка маркеров на карте
         markers.forEach(function (markerData, index) {
             var iconType = chooseIcon(markerData.type);
             var marker = L.marker([markerData.lat, markerData.lon], { icon: iconType }).addTo(map);
@@ -108,6 +117,7 @@ function loadMarkers() {
         });
     }
 }
+
 
 
 
