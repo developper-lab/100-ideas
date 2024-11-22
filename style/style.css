@@ -461,6 +461,14 @@ button:hover {
     background-color: #7395AE;
     cursor: pointer;
 }
+.info-container {
+    max-height: 150px; /* Ограничиваем высоту */
+    overflow-y: auto; /* Добавляем вертикальную прокрутку */
+    padding: 5px; /* Отступы внутри контейнера */
+    border: 1px solid #ccc; /* Опционально: добавляем рамку */
+    border-radius: 5px; /* Опционально: скругляем углы */
+    background-color: #f9f9f9; /* Опционально: фоновый цвет */
+}
 
 @media (max-width: 768px) {
     .flex {
