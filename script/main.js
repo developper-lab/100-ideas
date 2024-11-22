@@ -90,6 +90,12 @@ var theaterIcon = L.icon({
     iconAnchor: [16, 32],
     popupAnchor: [0, -32]
 });
+var fitnessIcon = L.icon({
+    iconUrl: 'image/fitness.png', // Укажите путь к иконке клуба
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
 // Сохранение маркеров в localStorage
 function saveMarkers() {
     localStorage.setItem('markers', JSON.stringify(markers));
@@ -135,6 +141,8 @@ function chooseIcon(type) {
             return voleyballIcon;
         case 'theater':
             return theaterIcon;
+        case 'fitness':
+            return fitnessIcon;
         default:
             return L.icon({
                 iconUrl: 'default-icon.png', // Укажите путь к иконке по умолчанию
@@ -147,21 +155,21 @@ function chooseIcon(type) {
 
 
 
-// function createImageSlider(images) {
-//     if (!images || images.length === 0) return '';
+function createImageSlider(images) {
+    if (!images || images.length === 0) return '';
 
-//     let imageSliderHtml = `<div class="image-slider">`;
-//     images.forEach((imgSrc, index) => {
-//         imageSliderHtml += `<div class="slide" style="display: ${index === 0 ? 'block' : 'none'};">
-//                                 <img src="${imgSrc}">
-//                             </div>`;
-//     });
-//     imageSliderHtml += `
-//         <button class="prev" onclick="changeSlide(-1)">❮</button>
-//         <button class="next" onclick="changeSlide(1)">❯</button>
-//     </div>`;
-//     return imageSliderHtml;
-// }
+    let imageSliderHtml = `<div class="image-slider">`;
+    images.forEach((imgSrc, index) => {
+        imageSliderHtml += `<div class="slide" style="display: ${index === 0 ? 'block' : 'none'};">
+                                <img src="${imgSrc}">
+                            </div>`;
+    });
+    imageSliderHtml += `
+        <button class="prev" onclick="changeSlide(-1)">❮</button>
+        <button class="next" onclick="changeSlide(1)">❯</button>
+    </div>`;
+    return imageSliderHtml;
+}
 
 // Переключение слайдов
 let currentSlideIndex = 0;
@@ -190,21 +198,21 @@ let deleteButtonHtml = markerData.isPreset
     ? '' 
     : `<br><button class='image-btn' onclick="deleteMarker(${index})">Удалить маркер</button>`;
 // // Генерация слайдера изображений
-// let imageHtml = '';
-// if (Array.isArray(markerData.image) && markerData.image.length > 0) {
-//     imageHtml += `<div class="slider" id="slider-${index}">`;
-//     markerData.image.forEach((img, imgIndex) => {
-//         imageHtml += `
-//             <div class="slide ${imgIndex === 0 ? 'active' : ''}">
-//                 <img class="image-slide" src="${img}">
-//             </div>`;
-//     });
-//     imageHtml += `
-//         <button class="prev" onclick="changeSlide(${index}, -1)">&#10094;</button>
-//         <button class="next" onclick="changeSlide(${index}, 1)">&#10095;</button>
-//     </div>`;
-// }
-return `${nameHtml}${markerData.address}${infoHtml}${deleteButtonHtml}`;
+let imageHtml = '';
+if (Array.isArray(markerData.image) && markerData.image.length > 0) {
+    imageHtml += `<div class="slider" id="slider-${index}">`;
+    markerData.image.forEach((img, imgIndex) => {
+        imageHtml += `
+            <div class="slide ${imgIndex === 0 ? 'active' : ''}">
+                <img class="image-slide" src="${img}">
+            </div>`;
+    });
+    imageHtml += `
+        <button class="prev" onclick="changeSlide(${index}, -1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(${index}, 1)">&#10095;</button>
+    </div>`;
+}
+return `${nameHtml}${markerData.address}${infoHtml}${imageHtml}${deleteButtonHtml}`;
 }
 
 
@@ -417,7 +425,7 @@ function addPresetMarkers() {
             name: place.name,
             type: place.type,
             info: place.info || '', // Обязательно передайте info, если она есть
-            // image:place.image || '',
+            image:place.image || '',
             isPreset: true // Указываем, что это предустановленный маркер
         };
         

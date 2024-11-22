@@ -43,7 +43,8 @@
                 </div>
             </div>
             <a id="login-button" href="src/login.html" class="button login" style="display: block;">Вход</a>
-            <a id="registration-button" href="dist/registration.html" class="button register" style="display: block;">Регистрация</a>
+            <a id="registration-button" href="dist/registration.html" class="button register"
+                style="display: block;">Регистрация</a>
         </div>
     </header>
     <!-- Кнопка открытия формы -->
@@ -65,8 +66,8 @@
             <button class="btn-image" data-type="basketball" title="Баскетбол"><img src="image/basketball.png"
                     alt=""></button>
             <button class="btn-image" data-type="football" title="Футбол"><img src="image/football.png" alt=""></button>
-            <button class="btn-image" data-type="voleyball" title="Волейбол"><img src="image/voleyball.png" alt=""></button>
-
+            <button class="btn-image" data-type="voleyball" title="Волейбол"><img src="image/voleyball.png"
+                    alt=""></button>
             <button class="btn-image" data-type="cinema" title="Фильм"><img src="image/cinema.png" alt=""></button>
             <button class="btn-image" data-type="club" title="Клуб"><img src="image/night-club.png" alt=""></button>
             <button class="btn-image" data-type="karaoke" title="Караоке"><img src="image/singer.png" alt=""></button>
@@ -74,6 +75,8 @@
             <button class="btn-image" data-type="theater" title="Театр"><img src="image/theater.png" alt=""></button>
             <button class="btn-image" data-type="rest" title="Ресторан"><img src="image/restaurant.png" alt=""></button>
             <button class="btn-image" data-type="music" title="Музыка"><img src="image/music.png" alt=""></button>
+            <button class="btn-image" data-type="fitness" title="фитнес"><img src="image/fitness.png" alt=""></button>
+
         </div>
     </div>
     <h1 class="title">Фильтрация</h1>
@@ -101,12 +104,14 @@
                 src="image/restaurant.png" alt="Ресторан"></button>
         <button class="btn-image btn-image-sort" data-type="music" title="Музыка" onclick="filterMarkers('music')"><img
                 src="image/music.png" alt="Музыка"></button>
+        <button class="btn-image btn-image-sort" data-type="fitness" title="фитнес" onclick="filterMarkers('fitness')"><img src="image/fitness.png" alt="Спорт площадка"></button>
+
     </div>
 
     <div id="map">
         <button id="open-form-button" onclick="toggleForm()">+</button>
     </div>
- 
+
     <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -115,7 +120,7 @@
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js';
         import { getDatabase } from 'https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js';
         import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js';
-    
+
         // Firebase конфигурация
         const firebaseConfig = {
             apiKey: "AIzaSyDaEEyvxI6ukPznu1BpeO2qZ9vy_8jCDyo",
@@ -127,11 +132,11 @@
             appId: "1:687844886764:web:20596d94b0e25298063dc9",
             measurementId: "G-PP7W9B2VN9"
         };
-    
+
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const database = getDatabase(app);
-    
+
         // Проверка авторизации пользователя
         onAuthStateChanged(auth, (user) => {
             const registrationButton = document.getElementById('registration-button');
@@ -139,7 +144,7 @@
             const userMenu = document.getElementById('user-menu');
             const usernameDisplay = document.getElementById('username-display');
             const plus = document.getElementById("open-form-button")
-    
+
             if (user) {
                 registrationButton.style.display = 'none'; // Скрыть кнопку регистрации
                 loginbutton.style.display = 'none'; // Скрыть кнопку регистрации
@@ -154,7 +159,7 @@
                 userMenu.style.display = 'none'; // Скрыть меню пользователя
             }
         });
-    
+
         // Логика выхода из аккаунта
         document.getElementById('logout-button').addEventListener('click', () => {
             auth.signOut().then(() => {
@@ -163,7 +168,7 @@
                 console.error('Ошибка выхода:', error);
             });
         });
-        
+
     </script>
 </body>
 
