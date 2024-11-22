@@ -16,6 +16,7 @@ document.getElementById("overlay").addEventListener("click", toggleForm);
 var map = L.map('map', {
     zoomControl: false // Disable zoom controls
 }).setView([52.4345, 30.9754], 13);
+map.attributionControl.remove();
 
 // Добавление тайлов OpenStreetMap
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
