@@ -110,12 +110,23 @@ async function saveMarker(markerData) {
 
 // Загрузка маркеров из localStorage
 async function loadMarkers() {
-    const response = await fetch('../api/markers');
-    const markers = await response.json();
-    markers.forEach(marker => {
-      // Добавьте маркеры на карту
-      addMarkerToMap(marker);
-    });
+    try {
+      const response = await fetch('/api/markers'); // Замените путь на правильный, если API работает на другом домене
+      const markers = await response.json();
+      console.log('Ответ API:', markers);
+  
+      // Убедитесь, что `markers` — это массив
+      if (Array.isArray(markers)) {
+        markers.forEach(marker => {
+          // Добавьте маркер на карту
+          addMarkerToMap(marker);
+        });
+      } else {
+        console.error('Ошибка: API вернул не массив', markers);
+      }
+    } catch (error) {
+      console.error('Ошибка загрузки маркеров:', error);
+    }
   }
   
   
