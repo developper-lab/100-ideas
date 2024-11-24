@@ -97,24 +97,28 @@ var fitnessIcon = L.icon({
     popupAnchor: [0, -32]
 });
 // Сохранение маркеров в localStorage
-function saveMarkers() {
-    localStorage.setItem('markers', JSON.stringify(markers));
-}
+async function saveMarker(markerData) {
+    const response = await fetch('../api/markers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(markerData),
+    });
+    return response.json();
+  }
 
 // Загрузка маркеров из localStorage
-function loadMarkers() {
-    
-    var savedMarkers = JSON.parse(localStorage.getItem('markers'));
-    if (savedMarkers) {
-        markers = savedMarkers;
-        markers.forEach(function (markerData, index) {
-            var iconType = chooseIcon(markerData.type);
-            var marker = L.marker([markerData.lat, markerData.lon], { icon: iconType }).addTo(map);
-            marker.bindPopup(createPopupContent(markerData, index));
-            markerObjects[index] = marker; // Сохраняем объект маркера для дальнейшего доступа
-        });
-    }
-}
+async function loadMarkers() {
+    const response = await fetch('../api/markers');
+    const markers = await response.json();
+    markers.forEach(marker => {
+      // Добавьте маркеры на карту
+      addMarkerToMap(marker);
+    });
+  }
+  
+  
 
 
 
@@ -234,7 +238,7 @@ function deleteMarker(index) {
 
     // Удаляем данные маркера из массива и обновляем localStorage
     markers.splice(index, 1);
-    saveMarkers();
+    saveMarker();
 
     // Обновляем индексы маркеров
     updateMarkers();
@@ -323,7 +327,7 @@ function findAddress() {
             markerObjects[index] = marker;
 
             markers.push(markerData); // Сохраняем данные о маркере
-            saveMarkers(); // Сохраняем маркеры в localStorage
+            saveMarker(); // Сохраняем маркеры в localStorage
             // Перемещаем карту к маркеру
             map.setView([coords.lat, coords.lon], 15);
 

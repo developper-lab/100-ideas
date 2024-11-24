@@ -91,6 +91,12 @@ var theaterIcon = L.icon({
     iconAnchor: [16, 32],
     popupAnchor: [0, -32]
 });
+var fitnessIcon = L.icon({
+    iconUrl: '../image/fitness.png', // Укажите путь к иконке клуба
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
 // Сохранение маркеров в localStorage
 function saveMarkers() {
     localStorage.setItem('markers', JSON.stringify(markers));
@@ -145,6 +151,8 @@ function chooseIcon(type) {
             return voleyballIcon;
         case 'theater':
             return theaterIcon;
+        case 'fitness':
+            return fitnessIcon;
         default:
             return L.icon({
                 iconUrl: 'default-icon.png', // Укажите путь к иконке по умолчанию
