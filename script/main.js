@@ -97,39 +97,24 @@ var fitnessIcon = L.icon({
     popupAnchor: [0, -32]
 });
 // Сохранение маркеров в localStorage
-async function saveMarker(markerData) {
-    const response = await fetch('../api/markers', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(markerData),
-    });
-    return response.json();
-  }
+function saveMarkers() {
+    localStorage.setItem('markers', JSON.stringify(markers));
+}
 
 // Загрузка маркеров из localStorage
-async function loadMarkers() {
-    try {
-      const response = await fetch('../api/markers'); // Замените путь на правильный, если API работает на другом домене
-      const markers = await response.json();
-      console.log('Ответ API:', markers);
-  
-      // Убедитесь, что `markers` — это массив
-      if (Array.isArray(markers)) {
-        markers.forEach(marker => {
-          // Добавьте маркер на карту
-          addMarkerToMap(marker);
+function loadMarkers() {
+    
+    var savedMarkers = JSON.parse(localStorage.getItem('markers'));
+    if (savedMarkers) {
+        markers = savedMarkers;
+        markers.forEach(function (markerData, index) {
+            var iconType = chooseIcon(markerData.type);
+            var marker = L.marker([markerData.lat, markerData.lon], { icon: iconType }).addTo(map);
+            marker.bindPopup(createPopupContent(markerData, index));
+            markerObjects[index] = marker; // Сохраняем объект маркера для дальнейшего доступа
         });
-      } else {
-        console.error('Ошибка: API вернул не массив', markers);
-      }
-    } catch (error) {
-      console.error('Ошибка загрузки маркеров:', error);
     }
-  }
-  
-  
+}
 
 
 
@@ -249,7 +234,7 @@ function deleteMarker(index) {
 
     // Удаляем данные маркера из массива и обновляем localStorage
     markers.splice(index, 1);
-    saveMarker();
+    saveMarkers();
 
     // Обновляем индексы маркеров
     updateMarkers();
@@ -338,7 +323,7 @@ function findAddress() {
             markerObjects[index] = marker;
 
             markers.push(markerData); // Сохраняем данные о маркере
-            saveMarker(); // Сохраняем маркеры в localStorage
+            saveMarkers(); // Сохраняем маркеры в localStorage
             // Перемещаем карту к маркеру
             map.setView([coords.lat, coords.lon], 15);
 
