@@ -111,7 +111,7 @@ async function saveMarker(markerData) {
 // Загрузка маркеров из localStorage
 async function loadMarkers() {
     try {
-      const response = await fetch('/api/markers'); // Замените путь на правильный, если API работает на другом домене
+      const response = await fetch('../api/markers'); // Замените путь на правильный, если API работает на другом домене
       const markers = await response.json();
       console.log('Ответ API:', markers);
   
