@@ -22,27 +22,35 @@
 
 <body>
 
-
-
-
     <!-- Форма для ввода адреса и сообщения -->
 
     <div id="overlay"></div>
 
 
     <header>
-        <div class="button-container">
-            <div id="user-menu" class="user-menu" style="display: none;">
-                <span id="username-display"></span>
-                <div class="dropdown">
-                    <button class="dropbtn">▼</button>
-                    <div class="dropdown-content">
-                        <a href="#" id="logout-button">Выход</a>
-                    </div>
-                </div>
+        <div class="top-header fx ">
+            <div class="fx container-logo">
+                <a href="#" class="header-logo">
+                    <img src="../image/logo.png" alt="Молодежная площадка">
+                </a>
+                <h1 class="title">Молодежная площадка</h1>
             </div>
-            <a id="login-button" href="src/login.html" class="button login" style="display: block;">Вход</a>
-            <a id="registration-button" href="dist/registration.html" class="button register" style="display: block;">Регистрация</a>
+            <div class="button-container">
+                <div id="user-menu" class="user-menu" style="display: none;">
+                    <div class="dropdown">
+                        <button class="dropbtn"><img src="../image/profile.png" alt=""></button>
+                        <div class="dropdown-content">
+                            <span id="username-display"></span>
+                            <a href="#" id="logout-button">Выход</a>
+                        </div>
+                    </div>
+                  
+
+                </div>
+                <a id="login-button" href="src/login.html" class="button login" style="display: block;">Вход</a>
+                <a id="registration-button" href="dist/registration.html" class="button register"
+                    style="display: block;">Регистрация</a>
+            </div>
         </div>
     </header>
     <!-- Кнопка открытия формы -->
@@ -57,6 +65,11 @@
         <label for="message">Введите сообщение:</label>
         <input type="text" id="message" placeholder="Сегодня выступаю тут" required>
         <br><br>
+        <label for="marker-type">Тип маркера:</label>
+    <select id="marker-type" class="btn">
+        <option value="Временное место">Временно</option>
+        <option value="Постоянно место">Постоянно</option>
+    </select>
         <button id="findAddressButton" onclick="findAddress()" class="btn">Найти адрес</button>
 
         <!-- Кнопки с изображениями -->
@@ -64,8 +77,8 @@
             <button class="btn-image" data-type="basketball" title="Баскетбол"><img src="../image/basketball.png"
                     alt=""></button>
             <button class="btn-image" data-type="football" title="Футбол"><img src="../image/football.png" alt=""></button>
-            <button class="btn-image" data-type="voleyball" title="Волейбол"><img src="../image/voleyball.png" alt=""></button>
-
+            <button class="btn-image" data-type="voleyball" title="Волейбол"><img src="../image/voleyball.png"
+                    alt=""></button>
             <button class="btn-image" data-type="cinema" title="Фильм"><img src="../image/cinema.png" alt=""></button>
             <button class="btn-image" data-type="club" title="Клуб"><img src="../image/night-club.png" alt=""></button>
             <button class="btn-image" data-type="karaoke" title="Караоке"><img src="../image/singer.png" alt=""></button>
@@ -73,15 +86,42 @@
             <button class="btn-image" data-type="theater" title="Театр"><img src="../image/theater.png" alt=""></button>
             <button class="btn-image" data-type="rest" title="Ресторан"><img src="../image/restaurant.png" alt=""></button>
             <button class="btn-image" data-type="music" title="Музыка"><img src="../image/music.png" alt=""></button>
+            <button class="btn-image" data-type="fitness" title="фитнес"><img src="../image/fitness.png" alt=""></button>
+            <button class="btn-image" data-type="events" title="Мероприятия"><img src="../image/events.png" alt="Мероприятия"></button>
+            <button class="btn-image" data-type="studies" title="Учеба"><img src="../image/studies.png" alt="Учеба"></button>
+            <button class="btn-image" data-type="brsm" title="БРСМ"><img src="../image/brsm.png" alt="БРСМ"></button>
+            <button class="btn-image" data-type="shop" title="Магазин"><img src="../image/shop.png" alt="Магазин"></button>
         </div>
     </div>
     
     <div id="map">
-        <button id="open-form-button" onclick="toggleForm()">+</button>
-
     </div>
-    <button class="btn-link" id="btn-link">На главную</button>
 
+    <button class="btn-link" id="btn-link">На главную</button>
+<footer class="footer">
+        <div class="container">
+          <div class="footer-info">
+            <div class="left">
+              <p class="footer-paragraph">© 2024–2025 Молодежная площадка </p>
+              <p class="footer-paragraph">Представленная на сайте информация носит справочный характер и не является публичной офертой</p>
+              <a href="http://uoggmk.by/?knohdbimglnopppp" target="_blank" class="footer-paragraph-link">Гомельский государственный машиностроительный колледж</a>
+            </div>
+            <div class="center">
+              <p class="footer-paragraph-address">Проект находиться на этапе разработки</p>
+              <a href="tel:+375291751025">+375291751025</a>
+              <a href="mailto:uzvenkoivan49@gmail.com">uzvenkoivan49@gmail.com</a>
+              <a href="https://brsm.by/ru">Молодежь Беларуси</a>
+            </div>
+            <div class="right">
+              <ul class="footer-icons list-reset">
+                <li><a href="https://instagram.com/ggmk.gomel" target="_blank"><img src="../image/instagram.png" alt="icon"></a></li>
+                <li><a href="https://web.telegram.org/a/#-1001356004485" target="_blank"><img src="../image/telegram.png" alt="icon"></a></li>
+                <li><a href="https://vk.com/ggmk_club" target="_blank"><img src="../image/social.svg" alt="icon"></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
     <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -113,19 +153,18 @@
             const loginbutton = document.getElementById("login-button")
             const userMenu = document.getElementById('user-menu');
             const usernameDisplay = document.getElementById('username-display');
-            const plus = document.getElementById("open-form-button")
+
     
             if (user) {
                 registrationButton.style.display = 'none'; // Скрыть кнопку регистрации
                 loginbutton.style.display = 'none'; // Скрыть кнопку регистрации
                 userMenu.style.display = 'block'; // Показать меню пользователя
-                plus.style.display = 'block';
+
 
                 usernameDisplay.innerText = user.email; // Показать email пользователя
             } else {
                 registrationButton.style.display = 'block'; // Показать кнопку регистрации
                 loginbutton.style.display = 'block'; // Показать кнопку регистрации
-                plus.style.display = 'none';
                 userMenu.style.display = 'none'; // Скрыть меню пользователя
             }
         });

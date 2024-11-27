@@ -7,7 +7,7 @@ box-sizing:border-box;
 }
 
 body{
-background:#1ED5B9;
+background:#1ecfd5;
 font-family: 'Montserrat', sans-serif;
 }
 
@@ -22,6 +22,21 @@ transform:translate(-50%,-50%);
 padding:20px 20px 30px 20px;
 }
 
+.container .input {
+    position: relative;
+}
+
+.container .input .eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;  /* Размер иконки */
+    color: #1ecfd5;
+}
+
+
 .container h3{
 text-align:center;
 color:white;
@@ -35,7 +50,7 @@ font-weight:500;
 .container h2{
 text-align:center;        
 text-transform:uppercase;
-color:#1ED5B9;
+color:#1ecfd5;
 letter-spacing:2px;
 font-size:12px;
 margin-top:10px;
@@ -67,7 +82,7 @@ text-transform:uppercase;
 
 .container .input input:focus,
 .container .input input:valid{
-border-color:#1ED5B9;        
+border-color:#1ecfd5;        
 }
 
 .container .input label{
@@ -88,7 +103,7 @@ letter-spacing:2px;
 
 .container .input input:focus ~ label span, 
 .container .input input:valid ~ label span{
-color:#1ED5B9;     
+color:#1ecfd5;     
 transform:translateY(-25px);
 letter-spacing:2px;
 }
@@ -97,7 +112,7 @@ letter-spacing:2px;
 all:unset;  
 height:40px;
 width:95%;
-background:#1ED5B9;
+background:#1ecfd5;
 color:white;
 display:flex;
 align-items:center;
@@ -121,7 +136,7 @@ letter-spacing:1px;
 
 .container p span{
 padding-left:3px;        
-color:#1ED5B9;
+color:#1ecfd5;
 text-decoration:underline;
 }
 

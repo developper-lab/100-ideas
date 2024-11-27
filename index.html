@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Карта Гомеля - Найдите интересные места в городе</title>
+    <title>Молодежная площадка</title>
     <meta name="description"
         content="Интерактивная карта Гомеля. Узнайте, где находятся клубы, рестораны, фитнес-залы и другие интересные места.">
     <meta name="keywords" content="Карта Гомеля, Гомель карта, клубы, рестораны, фитнес, Беларусь">
@@ -31,20 +31,30 @@
 
 
     <header>
-        <div class="button-container">
-            <div id="user-menu" class="user-menu" style="display: none;">
-                <span id="username-display"></span>
-                <div class="dropdown">
-                    <button class="dropbtn">▼</button>
-                    <div class="dropdown-content">
-                        <a href="mykab/index.html">Мой кабинет</a>
-                        <a href="#" id="logout-button">Выход</a>
-                    </div>
-                </div>
+        <div class="top-header fx ">
+            <div class="fx container-logo">
+                <a href="#" class="header-logo">
+                    <img src="image/logo.png" alt="Молодежная площадка">
+                </a>
+                <h1 class="title">Молодежная площадка</h1>
             </div>
-            <a id="login-button" href="src/login.html" class="button login" style="display: block;">Вход</a>
-            <a id="registration-button" href="dist/registration.html" class="button register"
-                style="display: block;">Регистрация</a>
+            <div class="button-container">
+                <div id="user-menu" class="user-menu" style="display: none;">
+                    <div class="dropdown">
+                        <button class="dropbtn"><img src="image/profile.png" alt=""></button>
+                        <div class="dropdown-content">
+                            <span id="username-display"></span>
+                            <a href="mykab/index.html">Мой кабинет</a>
+                            <a href="#" id="logout-button">Выход</a>
+                        </div>
+                    </div>
+                  
+
+                </div>
+                <a id="login-button" href="src/login.html" class="button login" style="display: block;">Вход</a>
+                <a id="registration-button" href="dist/registration.html" class="button register"
+                    style="display: block;">Регистрация</a>
+            </div>
         </div>
     </header>
     <!-- Кнопка открытия формы -->
@@ -55,10 +65,16 @@
         <div class="g_id_signin" data-type="standard"></div>
         <label for="address">Введите адрес в Гомеле:</label>
         <input type="text" id="address" placeholder="Например, ул. Советская, 5" required>
+        <div id="suggestions" class="suggestions-container"></div>
         <br><br>
         <label for="message">Введите сообщение:</label>
         <input type="text" id="message" placeholder="Сегодня выступаю тут" required>
         <br><br>
+        <label for="marker-type">Тип маркера:</label>
+    <select id="marker-type" class="btn">
+        <option value="Временное место">Временно</option>
+        <option value="Постоянно место">Постоянно</option>
+    </select>
         <button id="findAddressButton" onclick="findAddress()" class="btn">Найти адрес</button>
 
         <!-- Кнопки с изображениями -->
@@ -76,35 +92,47 @@
             <button class="btn-image" data-type="rest" title="Ресторан"><img src="image/restaurant.png" alt=""></button>
             <button class="btn-image" data-type="music" title="Музыка"><img src="image/music.png" alt=""></button>
             <button class="btn-image" data-type="fitness" title="фитнес"><img src="image/fitness.png" alt=""></button>
-
+            <button class="btn-image" data-type="events" title="Мероприятия"><img src="image/events.png" alt="Мероприятия"></button>
+            <button class="btn-image" data-type="studies" title="Учеба"><img src="image/studies.png" alt="Учеба"></button>
+            <button class="btn-image" data-type="brsm" title="БРСМ"><img src="image/brsm.png" alt="БРСМ"></button>
+            <button class="btn-image" data-type="shop" title="Магазин"><img src="image/shop.png" alt="Магазин"></button>
         </div>
     </div>
-    <h1 class="title">Фильтрация</h1>
 
     <div class="sort">
-        <button class="btn-image btn-image-sort" data-type="all" title="Все" onclick="filterMarkers('all')"><img
+        <button class="btn-image-sort" data-type="all" title="Все" onclick="filterMarkers('all')"><img
                 src="image/all.png" alt="Все"></button>
-        <button class="btn-image btn-image-sort" data-type="basketball" title="Баскетбол"
-            onclick="filterMarkers('basketball')"><img src="image/basketball.png" alt="Баскетбол"></button>
-        <button class="btn-image btn-image-sort" data-type="football" title="Футбол"
-            onclick="filterMarkers('football')"><img src="image/football.png" alt="Футбол"></button>
-        <button class="btn-image btn-image-sort" data-type="voleyball" title="Волейбол"
-            onclick="filterMarkers('voleyball')"><img src="image/voleyball.png" alt="Волейбол"></button>
-        <button class="btn-image btn-image-sort" data-type="cinema" title="Фильм" onclick="filterMarkers('cinema')"><img
-                src="image/cinema.png" alt="Фильм"></button>
-        <button class="btn-image btn-image-sort" data-type="club" title="Клуб" onclick="filterMarkers('club')"><img
-                src="image/night-club.png" alt="Клуб"></button>
-        <button class="btn-image btn-image-sort" data-type="karaoke" title="Караоке"
-            onclick="filterMarkers('karaoke')"><img src="image/singer.png" alt="Караоке"></button>
-        <button class="btn-image btn-image-sort" data-type="gym" title="Зал" onclick="filterMarkers('gym')"><img
-                src="image/gym.png" alt="Зал"></button>
-        <button class="btn-image btn-image-sort" data-type="theater" title="Театр"
+        <button class="btn-image-sort" data-type="events" title="Мероприятия"
+            onclick="filterMarkers('events')"><img src="image/events.png" alt="Мероприятия"></button>
+        <button class="btn-image-sort" data-type="studies" title="Учеба"
+            onclick="filterMarkers('studies')"><img src="image/studies.png" alt="Учеба"></button>
+        <button class="btn-image-sort" data-type="brsm" title="БРСМ" onclick="filterMarkers('brsm')"><img
+                src="image/brsm.png" alt="БРСМ"></button>
+        <button class="btn-image-sort" data-type="cinema" title="Кинотеатр"
+            onclick="filterMarkers('cinema')"><img src="image/cinema.png" alt="Кинотеатр"></button>
+        <button class="btn-image-sort" data-type="theater" title="Театр"
             onclick="filterMarkers('theater')"><img src="image/theater.png" alt="Театр"></button>
-        <button class="btn-image btn-image-sort" data-type="rest" title="Ресторан" onclick="filterMarkers('rest')"><img
-                src="image/restaurant.png" alt="Ресторан"></button>
-        <button class="btn-image btn-image-sort" data-type="music" title="Музыка" onclick="filterMarkers('music')"><img
-                src="image/music.png" alt="Музыка"></button>
-        <button class="btn-image btn-image-sort" data-type="fitness" title="фитнес" onclick="filterMarkers('fitness')"><img src="image/fitness.png" alt="Спорт площадка"></button>
+        <button class="btn-image-sort" data-type="music" title="Выступления"
+            onclick="filterMarkers('music')"><img src="image/music.png" alt="Выступления"></button>
+        <button class="btn-image-sort" data-type="gym" title="Зал" onclick="filterMarkers('gym')"><img
+                src="image/gym.png" alt="Зал"></button>
+        <button class="btn-image-sort" data-type="fitness" title="фитнес"
+            onclick="filterMarkers('fitness')"><img src="image/fitness.png" alt="Спорт площадка"></button>
+        <button class="btn-image-sort" data-type="karaoke" title="Развлечение"
+            onclick="filterMarkers('karaoke')"><img src="image/singer.png" alt="Развлечение"></button>
+
+        <button class="btn-image-sort" data-type="rest" title="Кафе/Ресторан"
+            onclick="filterMarkers('rest')"><img src="image/restaurant.png" alt="Кафе/Ресторан"></button>
+        <button class="btn-image-sort" data-type="shop" title="Магазин" onclick="filterMarkers('shop')"><img
+                src="image/shop.png" alt="Магазин"></button>
+
+        <button class="btn-image-sort" data-type="club" title="Клуб" onclick="filterMarkers('club')"><img
+                src="image/night-club.png" alt="Клуб"></button>
+
+
+
+
+
 
     </div>
 
@@ -112,6 +140,30 @@
         <button id="open-form-button" onclick="toggleForm()">+</button>
     </div>
 
+    <footer class="footer">
+        <div class="container">
+          <div class="footer-info">
+            <div class="left">
+              <p class="footer-paragraph">© 2024–2025 Молодежная площадка </p>
+              <p class="footer-paragraph">Представленная на сайте информация носит справочный характер и не является публичной офертой</p>
+              <a href="http://uoggmk.by/?knohdbimglnopppp" target="_blank" class="footer-paragraph-link">Гомельский государственный машиностроительный колледж</a>
+            </div>
+            <div class="center">
+              <p class="footer-paragraph-address">Проект находиться на этапе разработки</p>
+              <a href="tel:+375291751025">+375291751025</a>
+              <a href="mailto:uzvenkoivan49@gmail.com">uzvenkoivan49@gmail.com</a>
+              <a href="https://brsm.by/ru">Молодежь Беларуси</a>
+            </div>
+            <div class="right">
+              <ul class="footer-icons list-reset">
+                <li><a href="https://instagram.com/ggmk.gomel" target="_blank"><img src="image/instagram.png" alt="icon"></a></li>
+                <li><a href="https://web.telegram.org/a/#-1001356004485" target="_blank"><img src="image/telegram.png" alt="icon"></a></li>
+                <li><a href="https://vk.com/ggmk_club" target="_blank"><img src="image/social.svg" alt="icon"></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
     <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -132,6 +184,7 @@
             appId: "1:687844886764:web:20596d94b0e25298063dc9",
             measurementId: "G-PP7W9B2VN9"
         };
+
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);

@@ -1,18 +1,3 @@
-
-function toggleForm() {
-    const overlay = document.getElementById("overlay");
-    const formContainer = document.getElementById("address-form-container");
-    const isFormVisible = overlay.style.display === "block";
-    const openformbutton = document.getElementById("open-form-button")
-    openformbutton.style.display = "none"
-
-    overlay.style.display = isFormVisible ? "none" : "block";
-    formContainer.style.display = isFormVisible ? "none" : "block";
-    openformbutton.style.display = isFormVisible ? "block" : "none";
-}
-
-// Закрытие формы при клике на затемненный фон
-document.getElementById("overlay").addEventListener("click", toggleForm);
 var map = L.map('map', {
     zoomControl: false // Disable zoom controls
 }).setView([52.4345, 30.9754], 13);
@@ -97,6 +82,30 @@ var fitnessIcon = L.icon({
     iconAnchor: [16, 32],
     popupAnchor: [0, -32]
 });
+var eventsIcon = L.icon({
+    iconUrl: '../image/events.png', // Укажите путь к иконке клуба
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
+var shopIcon = L.icon({
+    iconUrl: '../image/shop.png', // Укажите путь к иконке клуба
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
+var brsmIcon = L.icon({
+    iconUrl: '../image/brsm.png', // Укажите путь к иконке клуба
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
+var studiesIcon = L.icon({
+    iconUrl: '../image/studies.png', // Укажите путь к иконке клуба
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
 // Сохранение маркеров в localStorage
 function saveMarkers() {
     localStorage.setItem('markers', JSON.stringify(markers));
@@ -153,6 +162,15 @@ function chooseIcon(type) {
             return theaterIcon;
         case 'fitness':
             return fitnessIcon;
+        case 'shop':
+            return shopIcon;
+        case 'brsm':
+            return brsmIcon;
+        case 'studies':
+            return studiesIcon;
+        case 'events':
+            return eventsIcon;
+
         default:
             return L.icon({
                 iconUrl: 'default-icon.png', // Укажите путь к иконке по умолчанию
@@ -163,62 +181,34 @@ function chooseIcon(type) {
     }
 }
 
-
-
-// function createImageSlider(images) {
-//     if (!images || images.length === 0) return '';
-
-//     let imageSliderHtml = `<div class="image-slider">`;
-//     images.forEach((imgSrc, index) => {
-//         imageSliderHtml += `<div class="slide" style="display: ${index === 0 ? 'block' : 'none'};">
-//                                 <img src="${imgSrc}">
-//                             </div>`;
-//     });
-//     imageSliderHtml += `
-//         <button class="prev" onclick="changeSlide(-1)">❮</button>
-//         <button class="next" onclick="changeSlide(1)">❯</button>
-//     </div>`;
-//     return imageSliderHtml;
-// }
-
-// Переключение слайдов
-// let currentSlideIndex = 0;
-// function changeSlide(sliderIndex, n) {
-//     let slider = document.getElementById(`slider-${sliderIndex}`);
-//     let slides = slider.getElementsByClassName('slide');
-//     let currentIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
-
-//     // Убираем класс active с текущего слайда
-//     slides[currentIndex].classList.remove('active');
-
-//     // Вычисляем следующий слайд и добавляем ему класс active
-//     let nextIndex = (currentIndex + n + slides.length) % slides.length;
-//     slides[nextIndex].classList.add('active');
-// }
-// Создание содержимого всплывающего окна с кнопкой удаления
-// Создание содержимого всплывающего окна с кнопкой удаления
 function createPopupContent(markerData, index) {
-    let infoHtml = markerData.info ? `<br>${markerData.info}` : '';
-    let nameHtml = markerData.name ? `<b>${markerData.name}</b> <br>` : '';
-    let deleteButtonHtml = markerData.isPreset ? '' : `<br><button class='image-btn' onclick="deleteMarker(${index})">Удалить маркер</button>`;
-
+    let infoHtml = markerData.info
+        ? `<div class="info-container"><br>${markerData.info}</div>`
+        : '';
+    let infolink = markerData.link ? `${markerData.link}` : ''
+    let nameHtml = markerData.name
+        ? `<b>${markerData.name}</b> <br>`
+        : '';
+    let deleteButtonHtml = markerData.isPreset
+        ? ''
+        : `<br><button class='image-btn' onclick="deleteMarker(${index})">Удалить маркер</button>`;
     // // Генерация слайдера изображений
-    // let imageHtml = '';
-    // if (Array.isArray(markerData.image) && markerData.image.length > 0) {
-    //     imageHtml += `<div class="slider" id="slider-${index}">`;
-    //     markerData.image.forEach((img, imgIndex) => {
-    //         imageHtml += `
-    //             <div class="slide ${imgIndex === 0 ? 'active' : ''}">
-    //                 <img class="image-slide" src="${img}">
-    //             </div>`;
-    //     });
-    //     imageHtml += `
-    //         <button class="prev" onclick="changeSlide(${index}, -1)">&#10094;</button>
-    //         <button class="next" onclick="changeSlide(${index}, 1)">&#10095;</button>
-    //     </div>`;
-    // }
-
-    return `${nameHtml}${markerData.address}${infoHtml}${deleteButtonHtml}`;
+    let imageHtml = '';
+    if (Array.isArray(markerData.image) && markerData.image.length > 0) {
+        imageHtml += `<div class="slider" id="slider-${index}">`;
+        markerData.image.forEach((img, imgIndex) => {
+            imageHtml += `
+            <div class="slide ${imgIndex === 0 ? 'active' : ''}">
+                <img class="image-slide" src="${img}">
+            </div>`;
+        });
+        imageHtml += `
+        <button class="prev" onclick="changeSlide(${index}, -1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(${index}, 1)">&#10095;</button>
+    </div>`;
+    }
+    let type = markerData.markerType? `<div class="infoocontainer">${markerData.markerType}</div>` : '';
+    return `${nameHtml}${markerData.address}${infoHtml}${imageHtml}${type}${infolink}${deleteButtonHtml}`;
 }
 
 
@@ -261,121 +251,6 @@ function updateMarkers() {
     });
 }
 
-
-// Функция для геокодирования адреса с помощью Nominatim
-function getCoordinates(address) {
-    var url = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(address + ', Гомель, Беларусь');
-
-    return fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            if (data.length > 0) {
-                var lat = parseFloat(data[0].lat);
-                var lon = parseFloat(data[0].lon);
-                return { lat: lat, lon: lon };
-            } else {
-                alert('Адрес не найден');
-                return null;
-            }
-        })
-        .catch(error => console.error('Ошибка геокодирования:', error));
-}
-
-// Проверка, находятся ли координаты в пределах Гомеля
-function isWithinGomel(lat, lon) {
-    var minLat = 52.3500;
-    var maxLat = 52.5000;
-    var minLon = 30.8500;
-    var maxLon = 31.0500;
-
-    return lat >= minLat && lat <= maxLat && lon >= minLon && lon <= maxLon;
-}
-
-
-// Функция для поиска адреса и добавления маркера
-function findAddress() {
-    const address = document.getElementById('address').value;
-    const message = document.getElementById('message').value;
-
-    if (!selectedType) {
-        alert('Пожалуйста, выберите тип места перед добавлением маркера.');
-        return;
-    }
-
-    if (address.trim() === "") {
-        alert('Введите адрес.');
-        return;
-    }
-
-    getCoordinates(address).then(coords => {
-        if (coords && isWithinGomel(coords.lat, coords.lon)) {
-            const markerData = {
-                lat: coords.lat,
-                lon: coords.lon,
-                address: address,
-                info: message,
-                type: selectedType,
-                // image: img || [] 
-            };
-
-            const iconType = chooseIcon(selectedType);
-
-            // Добавляем новый маркер с сообщением и выбранной иконкой
-            const marker = L.marker([coords.lat, coords.lon], { icon: iconType }).addTo(map);
-            const index = markers.length; // Индекс нового маркера
-            marker.bindPopup(createPopupContent(markerData, index)).openPopup();
-            markerObjects[index] = marker;
-
-            markers.push(markerData); // Сохраняем данные о маркере
-            saveMarkers(); // Сохраняем маркеры в localStorage
-            // Перемещаем карту к маркеру
-            map.setView([coords.lat, coords.lon], 15);
-
-            // Закрываем форму
-            toggleForm();
-        } else {
-            alert('Адрес не находится в пределах Гомеля.');
-        }
-    });
-}
-
-let selectedType = null; // Переменная для хранения выбранного типа места
-
-const imageButtons = document.querySelectorAll('.btn-image');
-
-// Обрабатываем клики по кнопкам
-imageButtons.forEach((button) => {
-    button.addEventListener('click', function() {
-        // Снимаем выделение со всех кнопок
-        imageButtons.forEach(btn => btn.classList.remove('selected'));
-
-        // Добавляем класс 'selected' к нажатой кнопке и сохраняем тип
-        this.classList.add('selected');
-        selectedType = this.getAttribute('data-type'); // Сохраняем тип места
-    });
-});
-
-
-// Добавляем предустановленные маркеры
-function filterMarkers(type) {
-    console.log(`Selected type: ${type}`);
-
-    // Удаляем все существующие маркеры с карты
-    for (let key in markerObjects) {
-        map.removeLayer(markerObjects[key]);
-    }
-    markerObjects = {}; // Очищаем объект для отслеживания маркеров на карте
-
-    // Отображаем маркеры по типу
-    markers.forEach((markerData, index) => {
-        if (type === "all" || markerData.type === type) {
-            const iconType = chooseIcon(markerData.type);
-            const marker = L.marker([markerData.lat, markerData.lon], { icon: iconType }).addTo(map);
-            marker.bindPopup(createPopupContent(markerData, index));
-            markerObjects[index] = marker; // Сохраняем объект маркера
-        }
-    });
-}
 document.getElementById("btn-link").addEventListener("click",function(){
     window.location.href = '../index.html'
 });
