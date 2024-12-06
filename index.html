@@ -9,15 +9,12 @@
         content="Молодежная площадка Гомель. Узнайте, где находятся клубы, рестораны, фитнес-залы и другие интересные места.">
     <meta name="keywords" content="Карта Гомеля, Гомель карта, молодежная площадка,клубы, рестораны, фитнес, Беларусь">
     <meta name="author" content="Cigano">
-    <meta name="author" content="Ivan Uzvenko">
     <meta name="yandex-verification" content="9c933581aff4e162" />
-    <meta name="google-site-verification" content="0OXfA3Yy7MqFiYPLibXC4C2jabpUeZumSorxYtom6oE" />
     <meta name="google-site-verification" content="0OXfA3Yy7MqFiYPLibXC4C2jabpUeZumSorxYtom6oE" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="icon" href="image/location.png" type="image/png">
     <link rel="stylesheet" href="style/style.css">
     <script src="script/main.js" defer></script>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
 
 </head>
 
@@ -97,6 +94,8 @@
             <button class="btn-image" data-type="studies" title="Учеба"><img src="image/studies.png" alt="Учеба"></button>
             <button class="btn-image" data-type="brsm" title="БРСМ"><img src="image/brsm.png" alt="БРСМ"></button>
             <button class="btn-image" data-type="shop" title="Магазин"><img src="image/shop.png" alt="Магазин"></button>
+            <button class="btn-image" data-type="showplace" title="Достопримечательность"><img src="image/showplace.png" alt="Достопримечательность"></button>
+
         </div>
     </div>
 
@@ -113,6 +112,8 @@
             onclick="filterMarkers('cinema')"><img src="image/cinema.png" alt="Кинотеатр"></button>
         <button class="btn-image-sort" data-type="theater" title="Театр"
             onclick="filterMarkers('theater')"><img src="image/theater.png" alt="Театр"></button>
+            <button class="btn-image-sort" data-type="sight" title="Достопримечательность" onclick="filterMarkers('showplace')"><img
+                src="image/showplace.png" alt="Достопримечательность"></button>
         <button class="btn-image-sort" data-type="music" title="Выступления"
             onclick="filterMarkers('music')"><img src="image/music.png" alt="Выступления"></button>
         <button class="btn-image-sort" data-type="gym" title="Зал" onclick="filterMarkers('gym')"><img
@@ -129,8 +130,8 @@
 
         <button class="btn-image-sort" data-type="club" title="Клуб" onclick="filterMarkers('club')"><img
                 src="image/night-club.png" alt="Клуб"></button>
-
-
+         
+                
 
 
 
